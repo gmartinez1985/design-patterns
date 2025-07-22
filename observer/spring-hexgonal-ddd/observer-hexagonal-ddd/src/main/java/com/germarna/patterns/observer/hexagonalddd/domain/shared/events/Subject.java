@@ -10,7 +10,7 @@ public class Subject {
 	private Subject() {
 	}
 
-	public static Subject getInstance() {
+	public static synchronized Subject getInstance() {
 		if (instance == null) {
 			instance = new Subject();
 		}
