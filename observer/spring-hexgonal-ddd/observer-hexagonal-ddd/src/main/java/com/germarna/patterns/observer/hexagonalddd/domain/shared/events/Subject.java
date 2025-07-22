@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Subject {
 	private static Subject instance;
-    private final List<Observer> subscribers = new ArrayList<>();
+	private final List<Observer> subscribers = new ArrayList<>();
 
 	private Subject() {
 	}
 
-	public static Subject instance() {
+	public static Subject getInstance() {
 		if (instance == null) {
 			instance = new Subject();
 		}

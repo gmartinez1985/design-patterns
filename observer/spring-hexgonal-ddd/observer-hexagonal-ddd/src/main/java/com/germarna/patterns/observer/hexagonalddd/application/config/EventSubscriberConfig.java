@@ -20,8 +20,8 @@ public class EventSubscriberConfig {
 
 	@PostConstruct
 	public void registerSubscribers() {
-		Subject.instance().attach(this.reservationCreatedEmailObserver);
-		Subject.instance().attach(this.reservationCreatedSlackObserver);
-		Subject.instance().attach(this.reservationCreatedSmsObserver);
+		Subject.getInstance().attach(this.reservationCreatedEmailObserver);
+		Subject.getInstance().attach(this.reservationCreatedSlackObserver);
+		Subject.getInstance().attach(this.reservationCreatedSmsObserver);
 	}
 }
