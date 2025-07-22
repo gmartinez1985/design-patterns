@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Subject {
-	private static Subject instance;
+	private static final Subject instance = new Subject();
 	private final List<Observer> subscribers = new ArrayList<>();
 
 	private Subject() {
 	}
 
-	public static synchronized Subject getInstance() {
-		if (instance == null) {
-			instance = new Subject();
-		}
+	public static Subject getInstance() {
 		return instance;
 	}
 
