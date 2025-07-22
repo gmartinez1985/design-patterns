@@ -19,7 +19,7 @@ public class Reservation implements AggregateRoot {
 		final UUID reservationId = UUID.randomUUID();
 		final Reservation reservation = new Reservation(reservationId, guestName, roomType);
 		System.out.println("Reservation " + reservationId + " created for " + guestName);
-		Subject.getInstance().notifyObservers(new ReservationCreated(reservationId, guestName, roomType));
+		Subject.INSTANCE.notifyObservers(new ReservationCreated(reservationId, guestName, roomType));
 
 		return reservation;
 	}
