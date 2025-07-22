@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Subject {
-	private static final Subject INSTANCE = new Subject();
-	private final List<Observer> subscribers = new ArrayList<>();
+	private static Subject instance;
+    private final List<Observer> subscribers = new ArrayList<>();
 
 	private Subject() {
 	}
 
 	public static Subject instance() {
-		return INSTANCE;
+		if (instance == null) {
+			instance = new Subject();
+		}
+		return instance;
 	}
 
 	public void attach(Observer subscriber) {
