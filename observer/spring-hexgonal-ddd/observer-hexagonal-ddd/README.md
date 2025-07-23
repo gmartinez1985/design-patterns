@@ -7,41 +7,46 @@
 ```plantuml
 @startuml
 hide footbox
+
 actor User
+
 box "Domain Layer" #LightBlue
     participant "Reservation" as Reservation
+    participant "ReservationCreated (Event)" as ReservationCreated
     participant "Subject" as Publisher <<Enum>>
     participant "Observer" as Observer <<Interface>>
 end box
 
 box "Application Layer" #LightGreen
-    participant "ReservationCreatedConcreteObserver" as ConcreteObserver
-    participant "ConcreteNotificationSender" as Port <<Interface>>
+    participant "ReservationCreatedObserver" as ConcreteObserver
+    participant "NotificationSender" as Port <<Interface>>
 end box
 
 box "Infrastructure Layer" #LightYellow
-    participant "ConcreteNotificationAdapter" as Adapter
+    participant "EmailNotificationAdapter" as Adapter
 end box
 
-User -> Reservation : create reservation
+User -> Reservation : createReservation()
 activate Reservation
-Reservation -> Reservation : generate creation event
-Reservation -> Publisher : forward the event to the Subject
+Reservation -> ReservationCreated ** : create
+Reservation -> Publisher : publish(event)
 deactivate Reservation
 
 activate Publisher
-Publisher -> Observer : notify all the Observers
-Observer --> ConcreteObserver : <<use the proper implementation>>
+Publisher -> Observer : notify(event)
+Observer --> ConcreteObserver : (calls implementation)
 deactivate Publisher
 
-activate Observer
-ConcreteObserver -> Port : Forward the notification to the infra layer
-deactivate Observer
+activate ConcreteObserver
+ConcreteObserver -> Port : sendNotification(...)
+deactivate ConcreteObserver
 
 activate Port
-Port --> Adapter : <<use the proper implementation>>
+Port --> Adapter : (calls implementation)
 deactivate Port
-Adapter ->] : Process notification
+
+Adapter ->] : confirmation sent
 @enduml
+
 ```
 </details> 
