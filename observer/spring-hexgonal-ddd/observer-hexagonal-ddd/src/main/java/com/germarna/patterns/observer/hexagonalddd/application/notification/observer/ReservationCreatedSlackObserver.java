@@ -1,7 +1,7 @@
 package com.germarna.patterns.observer.hexagonalddd.application.notification.observer;
 
 import com.germarna.patterns.observer.hexagonalddd.application.notification.port.out.SlackNotificationSender;
-import com.germarna.patterns.observer.hexagonalddd.domain.events.reservation.ReservationCreated;
+import com.germarna.patterns.observer.hexagonalddd.domain.events.reservation.ReservationCreatedEvent;
 import com.germarna.patterns.observer.hexagonalddd.domain.shared.events.Observer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -13,14 +13,14 @@ public class ReservationCreatedSlackObserver implements Observer {
 
 	@Override
 	public void update(com.germarna.patterns.observer.hexagonalddd.domain.shared.events.DomainEvent event) {
-		if (event instanceof ReservationCreated reservationCreated) {
-			this.slackNotificationSender.sendNotification(reservationCreated.getReservationId(),
-					reservationCreated.getGuestName(), reservationCreated.getRoomType());
+		if (event instanceof ReservationCreatedEvent reservationCreatedEvent) {
+			this.slackNotificationSender.sendNotification(reservationCreatedEvent.getReservationId(),
+					reservationCreatedEvent.getGuestName(), reservationCreatedEvent.getRoomType());
 		}
 	}
 
 	@Override
 	public boolean isSubscribedTo(Class<?> eventType) {
-		return ReservationCreated.class.equals(eventType);
+		return ReservationCreatedEvent.class.equals(eventType);
 	}
 }

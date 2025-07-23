@@ -4,13 +4,13 @@ import com.germarna.patterns.observer.hexagonalddd.domain.shared.events.DomainEv
 
 import java.util.UUID;
 
-public class ReservationCreated implements DomainEvent {
+public class ReservationCreatedEvent implements DomainEvent {
 	private final UUID reservationId;
 	private final String guestName;
 
 	private final String roomType;
 
-	public ReservationCreated(UUID reservationId, String guestName, String roomType) {
+	public ReservationCreatedEvent(UUID reservationId, String guestName, String roomType) {
 		this.reservationId = reservationId;
 		this.guestName = guestName;
 		this.roomType = roomType;
