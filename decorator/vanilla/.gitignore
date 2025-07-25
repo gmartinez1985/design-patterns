@@ -1,0 +1,47 @@
+### Java ###
+*.class
+*.log
+*.jar
+*.war
+*.ear
+
+# Build directories
+out/
+bin/
+target/
+build/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+# Exclude all out folders except those inside src/main or src/test
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+# Exclude bin folders except inside src/main or src/test
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
