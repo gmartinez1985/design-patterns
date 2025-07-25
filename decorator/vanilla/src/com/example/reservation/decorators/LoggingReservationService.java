@@ -17,6 +17,6 @@ public class LoggingReservationService implements ReservationService {
 	public void createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
 		System.out.println("[LOG] Creating reservation for guest: " + guestId);
 		this.delegate.createReservation(roomId, guestId, checkIn, checkOut);
-		System.out.println("[LOG] com.example.reservation.domain.model.Reservation created");
+		System.out.println("[LOG] Reservation created");
 	}
 }
