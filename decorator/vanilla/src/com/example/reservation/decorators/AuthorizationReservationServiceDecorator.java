@@ -5,12 +5,10 @@ import com.example.reservation.domain.service.ReservationService;
 import java.util.Date;
 import java.util.UUID;
 
-public class AuthorizationReservationService implements ReservationService {
+public class AuthorizationReservationServiceDecorator extends BaseReservationDecorator {
 
-	private final ReservationService delegate;
-
-	public AuthorizationReservationService(ReservationService delegate) {
-		this.delegate = delegate;
+	public AuthorizationReservationServiceDecorator(ReservationService delegate) {
+		super(delegate);
 	}
 
 	@Override
@@ -21,7 +19,7 @@ public class AuthorizationReservationService implements ReservationService {
 
 		System.out.println("[AUTH] Guest " + guestId + " is authorized to create a reservation.");
 
-		this.delegate.createReservation(roomId, guestId, checkIn, checkOut);
+		super.createReservation(roomId, guestId, checkIn, checkOut);
 	}
 
 	private boolean isAuthorized(UUID guestId) {

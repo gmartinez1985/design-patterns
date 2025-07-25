@@ -7,13 +7,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-public class CoreReservationService implements ReservationService {
+public class ReservationServiceImpl implements ReservationService {
 
 	private final List<Reservation> reservations = new ArrayList<>();
 
 	@Override
 	public void createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
-		final Reservation reservation = Reservation.create(roomId, guestId, checkIn, checkOut);
+		final Reservation reservation = new Reservation(UUID.randomUUID(), roomId, guestId, checkIn, checkOut);
 
 		this.reservations.add(reservation);
 

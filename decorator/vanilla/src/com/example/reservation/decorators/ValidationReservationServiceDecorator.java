@@ -5,12 +5,10 @@ import com.example.reservation.domain.service.ReservationService;
 import java.util.Date;
 import java.util.UUID;
 
-public class ValidationReservationService implements ReservationService {
+public class ValidationReservationServiceDecorator extends BaseReservationDecorator {
 
-	private final ReservationService delegate;
-
-	public ValidationReservationService(ReservationService delegate) {
-		this.delegate = delegate;
+	public ValidationReservationServiceDecorator(ReservationService delegate) {
+		super(delegate);
 	}
 
 	@Override
@@ -23,12 +21,7 @@ public class ValidationReservationService implements ReservationService {
 			throw new IllegalArgumentException("[VALIDATION] Check-in date must be before check-out date");
 		}
 
-		// if (checkIn.before(new Date())) {
-		// throw new IllegalArgumentException("[VALIDATION] Check-in date cannot be in
-		// the past");
-		// }
-
 		System.out.println("[VALIDATION] Input data is valid.");
-		this.delegate.createReservation(roomId, guestId, checkIn, checkOut);
+		super.createReservation(roomId, guestId, checkIn, checkOut);
 	}
 }
