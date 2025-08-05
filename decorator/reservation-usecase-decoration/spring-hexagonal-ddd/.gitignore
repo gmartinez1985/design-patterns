@@ -14,7 +14,7 @@
 *.iml
 *.iws
 *.ipr
-out/
+.idea/out/
 
 # === OS-specific ===
 .DS_Store
