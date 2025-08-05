@@ -1,4 +1,4 @@
-package com.germarna.patterns.decorator.hexagonalddd.adapter.in.decorator;
+package com.germarna.patterns.decorator.hexagonalddd.adapter.in.decorator.usecase;
 
 import com.germarna.patterns.decorator.hexagonalddd.application.port.in.CreateReservationUseCase;
 

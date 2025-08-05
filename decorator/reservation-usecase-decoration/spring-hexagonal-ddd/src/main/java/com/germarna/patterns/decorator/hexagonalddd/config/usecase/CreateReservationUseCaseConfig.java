@@ -1,6 +1,6 @@
 package com.germarna.patterns.decorator.hexagonalddd.config.usecase;
 
-import com.germarna.patterns.decorator.hexagonalddd.adapter.in.decorator.*;
+import com.germarna.patterns.decorator.hexagonalddd.adapter.in.decorator.usecase.*;
 import com.germarna.patterns.decorator.hexagonalddd.application.domain.service.CreateReservationService;
 import com.germarna.patterns.decorator.hexagonalddd.application.port.in.CreateReservationUseCase;
 import com.germarna.patterns.decorator.hexagonalddd.application.port.out.SaveDummyPort;
