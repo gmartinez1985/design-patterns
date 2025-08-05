@@ -1,6 +1,6 @@
-package com.germarna.patterns.decorator.hexagonalddd.application.decorator;
+package com.germarna.patterns.decorator.hexagonalddd.adapter.in.decorator;
 
-import com.germarna.patterns.decorator.hexagonalddd.domain.port.in.usecase.CreateReservationUseCase;
+import com.germarna.patterns.decorator.hexagonalddd.application.port.in.CreateReservationUseCase;
 
 import java.util.Date;
 import java.util.UUID;

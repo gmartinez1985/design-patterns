@@ -1,6 +1,6 @@
-package com.germarna.patterns.decorator.hexagonalddd.domain.model;
+package com.germarna.patterns.decorator.hexagonalddd.application.domain.model;
 
-import com.germarna.patterns.decorator.hexagonalddd.domain.shared.model.AggregateRoot;
+import com.germarna.patterns.decorator.hexagonalddd.shared.domain.model.AggregateRoot;
 
 import java.util.Date;
 import java.util.UUID;

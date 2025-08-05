@@ -1,16 +1,16 @@
 package com.germarna.patterns.decorator.hexagonalddd;
 
-import com.germarna.patterns.decorator.hexagonalddd.domain.port.in.usecase.CreateReservationUseCase;
+import com.germarna.patterns.decorator.hexagonalddd.application.port.in.CreateReservationUseCase;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Date;
 import java.util.UUID;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+//@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication
 public class ApplicationBoot {
 
 	public static void main(String[] args) {
@@ -24,7 +24,12 @@ public class ApplicationBoot {
 			final Date checkIn = new Date(); // today
 			final Date checkOut = new Date(checkIn.getTime() + 2 * 24 * 60 * 60 * 1000); // +2 days
 
-			createReservationUseCase.createReservation(roomId, guestId, checkIn, checkOut);
+			try {
+				createReservationUseCase.createReservation(roomId, guestId, checkIn, checkOut);
+				createReservationUseCase.createReservation(roomId, guestId, checkIn, checkOut);
+			} catch (final Exception e) {
+				System.err.println("❌ Error creating reservation: " + e.getMessage());
+			}
 		};
 	}
 
