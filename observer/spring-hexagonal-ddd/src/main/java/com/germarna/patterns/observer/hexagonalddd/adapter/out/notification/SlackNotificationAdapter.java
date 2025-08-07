@@ -1,6 +1,6 @@
-package com.germarna.patterns.observer.hexagonalddd.infrastructure.notification;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.notification;
 
-import com.germarna.patterns.observer.hexagonalddd.application.notification.port.out.SlackNotificationSender;
+import com.germarna.patterns.observer.hexagonalddd.application.port.out.notification.SlackNotificationSender;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

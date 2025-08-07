@@ -1,6 +1,6 @@
 package com.germarna.patterns.observer.hexagonalddd;
 
-import com.germarna.patterns.observer.hexagonalddd.domain.model.reservation.Reservation;
+import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

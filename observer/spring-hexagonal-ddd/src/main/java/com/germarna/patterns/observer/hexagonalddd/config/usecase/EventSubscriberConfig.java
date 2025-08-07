@@ -1,9 +1,9 @@
-package com.germarna.patterns.observer.hexagonalddd.application.config;
+package com.germarna.patterns.observer.hexagonalddd.config.usecase;
 
-import com.germarna.patterns.observer.hexagonalddd.application.notification.observer.ReservationCreatedEmailObserver;
-import com.germarna.patterns.observer.hexagonalddd.application.notification.observer.ReservationCreatedSlackObserver;
-import com.germarna.patterns.observer.hexagonalddd.application.notification.observer.ReservationCreatedSmsObserver;
-import com.germarna.patterns.observer.hexagonalddd.domain.shared.events.Subject;
+import com.germarna.patterns.observer.hexagonalddd.adapter.in.event.ReservationCreatedEmailObserver;
+import com.germarna.patterns.observer.hexagonalddd.adapter.in.event.ReservationCreatedSlackObserver;
+import com.germarna.patterns.observer.hexagonalddd.adapter.in.event.ReservationCreatedSmsObserver;
+import com.germarna.patterns.observer.hexagonalddd.shared.domain.events.Subject;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

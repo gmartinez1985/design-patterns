@@ -1,6 +1,6 @@
-package com.germarna.patterns.observer.hexagonalddd.domain.events.reservation;
+package com.germarna.patterns.observer.hexagonalddd.application.domain.events;
 
-import com.germarna.patterns.observer.hexagonalddd.domain.shared.events.DomainEvent;
+import com.germarna.patterns.observer.hexagonalddd.shared.domain.events.DomainEvent;
 
 import java.util.UUID;
 

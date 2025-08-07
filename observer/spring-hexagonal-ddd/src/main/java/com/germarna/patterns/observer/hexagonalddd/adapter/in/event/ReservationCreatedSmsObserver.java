@@ -1,9 +1,9 @@
-package com.germarna.patterns.observer.hexagonalddd.application.notification.observer;
+package com.germarna.patterns.observer.hexagonalddd.adapter.in.event;
 
-import com.germarna.patterns.observer.hexagonalddd.application.notification.port.out.SmsNotificationSender;
-import com.germarna.patterns.observer.hexagonalddd.domain.events.reservation.ReservationCreatedEvent;
-import com.germarna.patterns.observer.hexagonalddd.domain.shared.events.DomainEvent;
-import com.germarna.patterns.observer.hexagonalddd.domain.shared.events.Observer;
+import com.germarna.patterns.observer.hexagonalddd.application.domain.events.ReservationCreatedEvent;
+import com.germarna.patterns.observer.hexagonalddd.application.port.out.notification.SmsNotificationSender;
+import com.germarna.patterns.observer.hexagonalddd.shared.domain.events.DomainEvent;
+import com.germarna.patterns.observer.hexagonalddd.shared.domain.events.Observer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

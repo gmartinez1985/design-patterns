@@ -1,12 +1,13 @@
-package com.germarna.patterns.observer.hexagonalddd.domain.model.reservation;
+package com.germarna.patterns.observer.hexagonalddd.application.domain.model;
 
-import com.germarna.patterns.observer.hexagonalddd.domain.events.reservation.ReservationCreatedEvent;
-import com.germarna.patterns.observer.hexagonalddd.domain.shared.events.Subject;
-import com.germarna.patterns.observer.hexagonalddd.domain.shared.model.AggregateRoot;
+import com.germarna.patterns.observer.hexagonalddd.application.domain.events.ReservationCreatedEvent;
+import com.germarna.patterns.observer.hexagonalddd.shared.domain.events.Subject;
+import com.germarna.patterns.observer.hexagonalddd.shared.domain.model.AggregateRoot;
 
 import java.util.UUID;
 
 public class Reservation implements AggregateRoot {
+
 	private final UUID reservationId;
 	private final String guestName;
 	private final String roomType;

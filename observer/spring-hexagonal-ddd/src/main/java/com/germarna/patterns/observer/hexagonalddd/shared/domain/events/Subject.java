@@ -1,4 +1,4 @@
-package com.germarna.patterns.observer.hexagonalddd.domain.shared.events;
+package com.germarna.patterns.observer.hexagonalddd.shared.domain.events;
 
 import java.util.ArrayList;
 import java.util.List;
