@@ -1,8 +1,8 @@
 # === Java/Maven ===
-/target/
-!.mvn/wrapper/maven-wrapper.jar
-.mvn/wrapper/maven-wrapper.properties
-.mvn/wrapper/maven-wrapper.js
+**/target/
+!**/.mvn/wrapper/maven-wrapper.jar
+**/.mvn/wrapper/maven-wrapper.properties
+**/.mvn/wrapper/maven-wrapper.js
 *.log
 *.class
 *.jar
@@ -10,7 +10,7 @@
 *.ear
 
 # === IntelliJ IDEA ===
-.idea/
+**/.idea/
 *.iml
 *.iws
 *.ipr
