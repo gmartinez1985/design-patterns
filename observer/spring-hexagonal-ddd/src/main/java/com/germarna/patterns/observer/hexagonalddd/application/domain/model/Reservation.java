@@ -1,12 +1,11 @@
 package com.germarna.patterns.observer.hexagonalddd.application.domain.model;
 
 import com.germarna.patterns.observer.hexagonalddd.application.domain.events.ReservationCreatedEvent;
-import com.germarna.patterns.observer.hexagonalddd.shared.domain.events.Subject;
 import com.germarna.patterns.observer.hexagonalddd.shared.domain.model.AggregateRoot;
 
 import java.util.UUID;
 
-public class Reservation implements AggregateRoot {
+public class Reservation extends AggregateRoot {
 
 	private final UUID reservationId;
 	private final String guestName;
@@ -20,7 +19,7 @@ public class Reservation implements AggregateRoot {
 		final UUID reservationId = UUID.randomUUID();
 		final Reservation reservation = new Reservation(reservationId, guestName, roomType);
 		System.out.println("Reservation " + reservationId + " created for " + guestName);
-		Subject.INSTANCE.notifyObservers(new ReservationCreatedEvent(reservationId, guestName, roomType));
+		reservation.publish(new ReservationCreatedEvent(reservationId, guestName, roomType));
 
 		return reservation;
 	}
