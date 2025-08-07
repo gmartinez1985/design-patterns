@@ -1,6 +1,6 @@
 spring:
   application:
-    name: DecoratorPatternInUseCasesHexagonalDDD
+    name: DecoratorPatternInRestClientHexagonalDDD
   cache:
     cache-names: payments
     caffeine:
