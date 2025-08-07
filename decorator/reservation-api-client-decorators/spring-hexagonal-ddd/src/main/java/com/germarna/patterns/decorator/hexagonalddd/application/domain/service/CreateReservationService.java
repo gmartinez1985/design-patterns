@@ -38,5 +38,4 @@ public class CreateReservationService implements CreateReservationUseCase {
 		final double roomRate = 100.0; // example fixed rate
 		return diffInDays * roomRate;
 	}
-
 }

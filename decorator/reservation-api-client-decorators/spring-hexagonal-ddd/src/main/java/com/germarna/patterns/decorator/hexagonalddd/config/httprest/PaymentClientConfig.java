@@ -1,9 +1,8 @@
 package com.germarna.patterns.decorator.hexagonalddd.config.httprest;
 
 import com.germarna.patterns.decorator.hexagonalddd.adapter.out.decorator.httprest.CachedPaymentClientDecorator;
-import com.germarna.patterns.decorator.hexagonalddd.adapter.out.decorator.httprest.CircuitBreakerPaymentClientDecorator;
 import com.germarna.patterns.decorator.hexagonalddd.adapter.out.decorator.httprest.HttpRestPaymentClientAdapter;
-import com.germarna.patterns.decorator.hexagonalddd.adapter.out.decorator.httprest.RetryPaymentClientDecorator;
+import com.germarna.patterns.decorator.hexagonalddd.adapter.out.decorator.httprest.ResiliencePaymentClientDecorator;
 import com.germarna.patterns.decorator.hexagonalddd.application.port.out.client.PaymentClient;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,27 +20,16 @@ public class PaymentClientConfig {
 	}
 
 	@Bean
-	public PaymentClient retryPaymentClientDecorator(
-			@Qualifier("httpRestPaymentClientAdapter") PaymentClient delegate) {
-		return new RetryPaymentClientDecorator(delegate);
-	}
-
-	@Bean
-	public PaymentClient circuitBreakerPaymentClientDecorator(
-			@Qualifier("retryPaymentClientDecorator") PaymentClient delegate,
+	public PaymentClient resiliencePaymentClientDecorator(
+			@Qualifier("httpRestPaymentClientAdapter") PaymentClient delegate,
 			@Autowired CircuitBreakerRegistry circuitBreakerRegistry) {
-		return new CircuitBreakerPaymentClientDecorator(delegate);
-	}
-
-	@Bean
-	public PaymentClient cachedPaymentClientDecorator(
-			@Qualifier("circuitBreakerPaymentClientDecorator") PaymentClient delegate) {
-		return new CachedPaymentClientDecorator(delegate);
+		return new ResiliencePaymentClientDecorator(delegate);
 	}
 
 	@Bean
 	@Primary
-	public PaymentClient createPaymentClient(@Qualifier("cachedPaymentClientDecorator") PaymentClient delegate) {
-		return delegate;
+	public PaymentClient cachedPaymentClientDecorator(
+			@Qualifier("resiliencePaymentClientDecorator") PaymentClient delegate) {
+		return new CachedPaymentClientDecorator(delegate);
 	}
 }

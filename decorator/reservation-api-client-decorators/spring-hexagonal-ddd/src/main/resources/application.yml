@@ -1,27 +1,25 @@
 spring:
   application:
-    name: ObserverPatternHexagonalDDD
+    name: DecoratorPatternInUseCasesHexagonalDDD
   cache:
     cache-names: payments
     caffeine:
       spec: maximumSize=1000,expireAfterWrite=10m,recordStats
 
-logging:
-  level:
-    org.springframework.cache.interceptor: TRACE
-
 resilience4j.retry:
+  retryAspectOrder: 2
   instances:
     paymentRetry:
       max-attempts: 2
       wait-duration: 200ms
 
 resilience4j.circuitbreaker:
+  circuitBreakerAspectOrder: 1
   instances:
     paymentCircuitBreaker:
       slidingWindowType: COUNT_BASED
       slidingWindowSize: 5
-      minimumNumberOfCalls: 5
+      minimumNumberOfCalls: 3
       failureRateThreshold: 20
       waitDurationInOpenState: 3s
       permittedNumberOfCallsInHalfOpenState: 2

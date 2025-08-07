@@ -6,13 +6,12 @@ import org.springframework.cache.annotation.Cacheable;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CachedPaymentClientDecorator implements PaymentClient {
+public class CachedPaymentClientDecorator extends BasePaymentClientDecorator {
 
-	private final PaymentClient delegate;
 	private final AtomicInteger callCount = new AtomicInteger();
 
 	public CachedPaymentClientDecorator(PaymentClient delegate) {
-		this.delegate = delegate;
+		super(delegate);
 	}
 
 	@Override
