@@ -7,11 +7,11 @@ import com.germarna.patterns.decorator.hexagonalddd.application.port.out.SaveRes
 
 import java.util.UUID;
 
-public class AuditSaveReservationPersistenceDecorator extends BaseSaveReservationPersistenceDecorator {
+public class AuditSaveReservationPersistenceAdapterDecorator extends BaseSaveReservationPersistenceAdapterDecorator {
 
 	private final ReservationCustomAuditRepository auditRepository;
 
-	public AuditSaveReservationPersistenceDecorator(SaveReservationPort delegate,
+	public AuditSaveReservationPersistenceAdapterDecorator(SaveReservationPort delegate,
 			ReservationCustomAuditRepository auditRepository) {
 		super(delegate);
 		this.auditRepository = auditRepository;

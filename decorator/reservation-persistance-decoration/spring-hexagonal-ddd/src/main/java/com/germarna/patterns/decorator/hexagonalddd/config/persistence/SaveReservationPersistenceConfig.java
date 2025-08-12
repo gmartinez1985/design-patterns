@@ -1,7 +1,7 @@
 package com.germarna.patterns.decorator.hexagonalddd.config.persistence;
 
 import com.germarna.patterns.decorator.hexagonalddd.adapter.out.persistence.common.repository.ReservationCustomAuditRepository;
-import com.germarna.patterns.decorator.hexagonalddd.adapter.out.persistence.savereservation.decorator.AuditSaveReservationPersistenceDecorator;
+import com.germarna.patterns.decorator.hexagonalddd.adapter.out.persistence.savereservation.decorator.AuditSaveReservationPersistenceAdapterDecorator;
 import com.germarna.patterns.decorator.hexagonalddd.application.port.out.SaveReservationPort;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +15,6 @@ public class SaveReservationPersistenceConfig {
 	public SaveReservationPort cachedSaveReservationPort(
 			@Qualifier("saveReservationPersistenceAdapter") SaveReservationPort delegate,
 			ReservationCustomAuditRepository auditRepository) {
-		return new AuditSaveReservationPersistenceDecorator(delegate, auditRepository);
+		return new AuditSaveReservationPersistenceAdapterDecorator(delegate, auditRepository);
 	}
 }

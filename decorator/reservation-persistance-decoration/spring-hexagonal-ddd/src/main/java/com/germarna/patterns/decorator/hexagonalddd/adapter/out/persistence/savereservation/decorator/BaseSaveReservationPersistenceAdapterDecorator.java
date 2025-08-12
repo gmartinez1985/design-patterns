@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.UUID;
 
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class BaseSaveReservationPersistenceDecorator implements SaveReservationPort {
+public abstract class BaseSaveReservationPersistenceAdapterDecorator implements SaveReservationPort {
 	private final SaveReservationPort delegate;
 
 	@Override
