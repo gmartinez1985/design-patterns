@@ -1,4 +1,4 @@
-package com.germarna.patterns.decorator.hexagonalddd.adapter.in.decorator.usecase;
+package com.germarna.patterns.decorator.hexagonalddd.adapter.in.usecase.decorator;
 
 import com.germarna.patterns.decorator.hexagonalddd.application.port.in.CreateReservationUseCase;
 import org.slf4j.Logger;
@@ -7,10 +7,10 @@ import org.slf4j.LoggerFactory;
 import java.util.Date;
 import java.util.UUID;
 
-public class LoggingCreateReservationServiceDecorator extends BaseReservationDecorator {
-	private static final Logger log = LoggerFactory.getLogger(LoggingCreateReservationServiceDecorator.class);
+public class LoggingCreateReservationUseCaseDecorator extends BaseCreateReservationUseCaseDecorator {
+	private static final Logger log = LoggerFactory.getLogger(LoggingCreateReservationUseCaseDecorator.class);
 
-	public LoggingCreateReservationServiceDecorator(CreateReservationUseCase delegate) {
+	public LoggingCreateReservationUseCaseDecorator(CreateReservationUseCase delegate) {
 		super(delegate);
 	}
 

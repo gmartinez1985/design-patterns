@@ -1,6 +1,6 @@
 package com.germarna.patterns.decorator.hexagonalddd.config.usecase;
 
-import com.germarna.patterns.decorator.hexagonalddd.adapter.in.decorator.usecase.*;
+import com.germarna.patterns.decorator.hexagonalddd.adapter.in.usecase.decorator.*;
 import com.germarna.patterns.decorator.hexagonalddd.application.domain.service.CreateReservationService;
 import com.germarna.patterns.decorator.hexagonalddd.application.port.in.CreateReservationUseCase;
 import com.germarna.patterns.decorator.hexagonalddd.application.port.out.SaveDummyPort;
@@ -15,38 +15,39 @@ import org.springframework.context.annotation.Primary;
 public class CreateReservationUseCaseConfig {
 	private final SaveDummyPort saveDummyPort;
 
-	@Bean("coreCreateReservationService")
-	public CreateReservationUseCase coreCreateReservationService() {
+	@Bean
+	public CreateReservationUseCase coreCreateReservationUseCase() {
 		return new CreateReservationService(this.saveDummyPort);
 	}
 
-	@Bean("transactionalDecorator")
-	public CreateReservationUseCase transactionalDecorator(
-			@Qualifier("coreCreateReservationService") CreateReservationUseCase core) {
-		return new TransactionalCreateReservationDecorator(core);
+	@Bean
+	public CreateReservationUseCase transactionalCreateReservationUseCase(
+			@Qualifier("coreCreateReservationUseCase") CreateReservationUseCase core) {
+		return new TransactionalCreateReservationUseCaseDecorator(core);
 	}
 
-	@Bean("loggingDecorator")
-	public CreateReservationUseCase loggingDecorator(
-			@Qualifier("transactionalDecorator") CreateReservationUseCase transactional) {
-		return new LoggingCreateReservationServiceDecorator(transactional);
+	@Bean
+	public CreateReservationUseCase loggingCreateReservationUseCase(
+			@Qualifier("transactionalCreateReservationUseCase") CreateReservationUseCase transactional) {
+		return new LoggingCreateReservationUseCaseDecorator(transactional);
 	}
 
-	@Bean("metricsDecorator")
-	public CreateReservationUseCase metricsDecorator(@Qualifier("loggingDecorator") CreateReservationUseCase logging) {
-		return new MetricsCreateReservationServiceDecorator(logging);
+	@Bean
+	public CreateReservationUseCase metricsCreateReservationUseCase(
+			@Qualifier("loggingCreateReservationUseCase") CreateReservationUseCase logging) {
+		return new MetricsCreateReservationUseCaseDecorator(logging);
 	}
 
-	@Bean("validationDecorator")
-	public CreateReservationUseCase validationDecorator(
-			@Qualifier("metricsDecorator") CreateReservationUseCase metrics) {
-		return new ValidationCreateReservationServiceDecorator(metrics);
+	@Bean
+	public CreateReservationUseCase validationCreateReservationUseCase(
+			@Qualifier("metricsCreateReservationUseCase") CreateReservationUseCase metrics) {
+		return new ValidationCreateReservationUseCaseDecorator(metrics);
 	}
 
 	@Bean
 	@Primary
-	public CreateReservationUseCase authorizationDecorator(
-			@Qualifier("validationDecorator") CreateReservationUseCase validation) {
-		return new AuthorizationCreateReservationServiceDecorator(validation);
+	public CreateReservationUseCase authorizationCreateReservationUseCase(
+			@Qualifier("validationCreateReservationUseCase") CreateReservationUseCase validation) {
+		return new AuthorizationCreateReservationUseCaseDecorator(validation);
 	}
 }

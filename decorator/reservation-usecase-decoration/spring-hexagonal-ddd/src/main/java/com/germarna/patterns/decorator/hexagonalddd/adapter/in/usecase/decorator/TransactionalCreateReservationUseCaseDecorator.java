@@ -1,4 +1,4 @@
-package com.germarna.patterns.decorator.hexagonalddd.adapter.in.decorator.usecase;
+package com.germarna.patterns.decorator.hexagonalddd.adapter.in.usecase.decorator;
 
 import com.germarna.patterns.decorator.hexagonalddd.application.port.in.CreateReservationUseCase;
 import org.springframework.transaction.annotation.Transactional;
@@ -6,9 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.UUID;
 
-public class TransactionalCreateReservationDecorator extends BaseReservationDecorator {
+public class TransactionalCreateReservationUseCaseDecorator extends BaseCreateReservationUseCaseDecorator {
 
-	public TransactionalCreateReservationDecorator(CreateReservationUseCase delegate) {
+	public TransactionalCreateReservationUseCaseDecorator(CreateReservationUseCase delegate) {
 		super(delegate);
 	}
 

@@ -1,12 +1,12 @@
-package com.germarna.patterns.decorator.hexagonalddd.adapter.in.decorator.usecase;
+package com.germarna.patterns.decorator.hexagonalddd.adapter.in.usecase.decorator;
 
 import com.germarna.patterns.decorator.hexagonalddd.application.port.in.CreateReservationUseCase;
 
 import java.util.Date;
 import java.util.UUID;
 
-public class MetricsCreateReservationServiceDecorator extends BaseReservationDecorator {
-	public MetricsCreateReservationServiceDecorator(CreateReservationUseCase delegate) {
+public class MetricsCreateReservationUseCaseDecorator extends BaseCreateReservationUseCaseDecorator {
+	public MetricsCreateReservationUseCaseDecorator(CreateReservationUseCase delegate) {
 		super(delegate);
 	}
 
