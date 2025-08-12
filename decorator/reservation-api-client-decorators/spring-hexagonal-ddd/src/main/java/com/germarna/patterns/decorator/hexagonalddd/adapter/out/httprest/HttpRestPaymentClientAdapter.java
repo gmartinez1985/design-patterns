@@ -1,9 +1,11 @@
-package com.germarna.patterns.decorator.hexagonalddd.adapter.out.decorator.httprest;
+package com.germarna.patterns.decorator.hexagonalddd.adapter.out.httprest;
 
 import com.germarna.patterns.decorator.hexagonalddd.application.port.out.client.PaymentClient;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+@Component
 public class HttpRestPaymentClientAdapter implements PaymentClient {
 
 	private int attempt = 0;

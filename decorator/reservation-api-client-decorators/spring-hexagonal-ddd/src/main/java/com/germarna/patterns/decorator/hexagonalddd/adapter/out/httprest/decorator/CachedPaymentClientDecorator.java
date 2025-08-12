@@ -1,4 +1,4 @@
-package com.germarna.patterns.decorator.hexagonalddd.adapter.out.decorator.httprest;
+package com.germarna.patterns.decorator.hexagonalddd.adapter.out.httprest.decorator;
 
 import com.germarna.patterns.decorator.hexagonalddd.application.port.out.client.PaymentClient;
 import org.springframework.cache.annotation.Cacheable;
@@ -19,6 +19,6 @@ public class CachedPaymentClientDecorator extends BasePaymentClientDecorator {
 	public boolean pay(UUID reservationId, double amount) {
 		final int currentCall = this.callCount.incrementAndGet();
 		System.out.println("⬇️ Cache MISS for reservation " + reservationId + " (call #" + currentCall + ")");
-		return this.delegate.pay(reservationId, amount);
+		return super.pay(reservationId, amount);
 	}
 }

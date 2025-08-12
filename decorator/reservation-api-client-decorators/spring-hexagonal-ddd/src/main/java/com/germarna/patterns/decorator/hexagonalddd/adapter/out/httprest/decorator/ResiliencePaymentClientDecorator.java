@@ -1,4 +1,4 @@
-package com.germarna.patterns.decorator.hexagonalddd.adapter.out.decorator.httprest;
+package com.germarna.patterns.decorator.hexagonalddd.adapter.out.httprest.decorator;
 
 import com.germarna.patterns.decorator.hexagonalddd.application.port.out.client.PaymentClient;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
@@ -24,7 +24,7 @@ public class ResiliencePaymentClientDecorator extends BasePaymentClientDecorator
 		final io.github.resilience4j.circuitbreaker.CircuitBreaker cb = this.registry
 				.circuitBreaker("paymentCircuitBreaker");
 		System.out.println("🔌 CircuitBreaker current state: " + cb.getState());
-		return this.delegate.pay(reservationId, amount);
+		return super.pay(reservationId, amount);
 	}
 
 	public boolean fallbackPay(UUID reservationId, double amount, Throwable throwable) {

@@ -1,6 +1,6 @@
 package com.germarna.patterns.decorator.hexagonalddd.config.usecase;
 
-import com.germarna.patterns.decorator.hexagonalddd.adapter.in.decorator.usecase.LoggingCreateReservationServiceDecorator;
+import com.germarna.patterns.decorator.hexagonalddd.adapter.in.usecase.decorator.LoggingCreateReservationUseCaseDecorator;
 import com.germarna.patterns.decorator.hexagonalddd.application.domain.service.CreateReservationService;
 import com.germarna.patterns.decorator.hexagonalddd.application.port.in.usecase.CreateReservationUseCase;
 import com.germarna.patterns.decorator.hexagonalddd.application.port.out.client.PaymentClient;
@@ -17,14 +17,14 @@ public class CreateReservationUseCaseConfig {
 	private final PaymentClient paymentClient;
 
 	@Bean
-	public CreateReservationUseCase createReservationUseCase() {
+	public CreateReservationUseCase coreCreateReservationUseCase() {
 		return new CreateReservationService(this.paymentClient);
 	}
 
 	@Bean
 	@Primary
-	public CreateReservationUseCase loggingDecorator(
-			@Qualifier("createReservationUseCase") CreateReservationUseCase logging) {
-		return new LoggingCreateReservationServiceDecorator(logging);
+	public CreateReservationUseCase loggingCreateReservationUseCase(
+			@Qualifier("coreCreateReservationUseCase") CreateReservationUseCase logging) {
+		return new LoggingCreateReservationUseCaseDecorator(logging);
 	}
 }

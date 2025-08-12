@@ -1,4 +1,4 @@
-package com.germarna.patterns.decorator.hexagonalddd.adapter.out.decorator.httprest;
+package com.germarna.patterns.decorator.hexagonalddd.adapter.out.httprest.decorator;
 
 import com.germarna.patterns.decorator.hexagonalddd.application.port.out.client.PaymentClient;
 import lombok.AccessLevel;
