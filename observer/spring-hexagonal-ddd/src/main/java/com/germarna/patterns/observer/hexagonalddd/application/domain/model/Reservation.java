@@ -10,6 +10,7 @@ public class Reservation extends AggregateRoot {
 	private final UUID reservationId;
 	private final String guestName;
 	private final String roomType;
+
 	private Reservation(UUID reservationId, String guestName, String roomType) {
 		this.reservationId = reservationId;
 		this.guestName = guestName;
@@ -22,5 +23,8 @@ public class Reservation extends AggregateRoot {
 		reservation.publish(new ReservationCreatedEvent(reservationId, guestName, roomType));
 
 		return reservation;
+	}
+	public UUID getReservationId() {
+		return this.reservationId;
 	}
 }
