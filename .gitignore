@@ -18,7 +18,7 @@
 **/vanilla/out/
 
 # === OS-specific ===
-.DS_Store
+**/.DS_Store
 Thumbs.db
 
 # === Maven local repo cache (optional) ===
