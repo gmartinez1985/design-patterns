@@ -3,6 +3,7 @@ package com.germarna.patterns.observer.hexagonalddd.config.usecase;
 import com.germarna.patterns.observer.hexagonalddd.adapter.in.event.ReservationCreatedEmailObserver;
 import com.germarna.patterns.observer.hexagonalddd.adapter.in.event.ReservationCreatedSlackObserver;
 import com.germarna.patterns.observer.hexagonalddd.adapter.in.event.ReservationCreatedSmsObserver;
+import com.germarna.patterns.observer.hexagonalddd.application.domain.events.ReservationCreatedEvent;
 import com.germarna.patterns.observer.hexagonalddd.shared.domain.events.Subject;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +21,8 @@ public class EventSubscriberConfig {
 
 	@PostConstruct
 	public void registerSubscribers() {
-		Subject.INSTANCE.attach(this.reservationCreatedEmailObserver);
-		Subject.INSTANCE.attach(this.reservationCreatedSlackObserver);
-		Subject.INSTANCE.attach(this.reservationCreatedSmsObserver);
+		Subject.INSTANCE.attach(ReservationCreatedEvent.class, this.reservationCreatedEmailObserver);
+		Subject.INSTANCE.attach(ReservationCreatedEvent.class, this.reservationCreatedSlackObserver);
+		Subject.INSTANCE.attach(ReservationCreatedEvent.class, this.reservationCreatedSmsObserver);
 	}
 }
