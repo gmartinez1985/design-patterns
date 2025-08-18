@@ -19,7 +19,6 @@ public class Reservation extends AggregateRoot {
 	public static Reservation create(String guestName, String roomType) {
 		final UUID reservationId = UUID.randomUUID();
 		final Reservation reservation = new Reservation(reservationId, guestName, roomType);
-		System.out.println("Reservation " + reservationId + " created for " + guestName);
 		reservation.publish(new ReservationCreatedEvent(reservationId, guestName, roomType));
 
 		return reservation;
