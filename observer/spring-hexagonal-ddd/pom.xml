@@ -1,57 +1,69 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.5.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
+
 	<groupId>com.germarna.patterns.observer.hexagonalddd</groupId>
 	<artifactId>reservation-service-observer-example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Reservation Service Observer Example</name>
-	<description>A Spring Boot example demonstrating the Observer Pattern applied in a DDD + Hexagonal Architecture context.</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+	<description>
+		A Spring Boot example demonstrating the Observer Pattern applied in a DDD + Hexagonal Architecture context.
+	</description>
+
 	<properties>
+		<!-- Java & Spring Boot -->
 		<java.version>17</java.version>
+		<!-- Dependencies -->
+		<lombok.version>1.18.38</lombok.version>
+		<pitest.junit5.version>1.2.1</pitest.junit5.version>
+		<jacoco.version>0.8.12</jacoco.version>
+		<maven.surefire.version>3.1.2</maven.surefire.version>
+		<maven.failsafe.version>3.1.2</maven.failsafe.version>
+		<pitest.maven.version>1.20.1</pitest.maven.version>
 	</properties>
+
 	<dependencies>
+		<!-- Spring Boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
+		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.38</version>
+			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
-
+		<!-- Testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- PIT JUnit5 plugin -->
+		<dependency>
+			<groupId>org.pitest</groupId>
+			<artifactId>pitest-junit5-plugin</artifactId>
+			<version>${pitest.junit5.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<!-- Compiler Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -60,11 +72,13 @@
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<version>1.18.38</version>
+							<version>${lombok.version}</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+
+			<!-- Spring Boot Plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -77,7 +91,89 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<!-- Surefire for Unit Tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.version}</version>
+				<configuration>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+
+			<!-- Failsafe for Integration Tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${maven.failsafe.version}</version>
+				<configuration>
+					<includes>
+						<include>**/*IT.java</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- JaCoCo for Code Coverage -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals><goal>prepare-agent</goal></goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>verify</phase>
+						<goals><goal>report</goal></goals>
+					</execution>
+				</executions>
+				<configuration>
+					<excludes>
+						<exclude>com/germarna/patterns/observer/hexagonalddd/ApplicationBoot*</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<!-- PIT Mutation Testing -->
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>${pitest.maven.version}</version>
+				<configuration>
+					<targetClasses>
+						<param>com.germarna.patterns.observer.hexagonalddd.*</param>
+					</targetClasses>
+					<targetTests>
+						<param>com.germarna.patterns.observer.hexagonalddd.*</param>
+					</targetTests>
+					<excludedClasses>
+						<param>com.germarna.patterns.observer.hexagonalddd.ApplicationBoot*</param>
+						<param>com.germarna.patterns.observer.hexagonalddd.adapter.out.notification.*</param>
+					</excludedClasses>
+					<mutators>
+						<mutator>STRONGER</mutator>
+					</mutators>
+					<threads>4</threads>
+					<outputFormats>
+						<param>HTML</param>
+						<param>XML</param>
+					</outputFormats>
+					<failWhenNoMutations>true</failWhenNoMutations>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
 </project>
