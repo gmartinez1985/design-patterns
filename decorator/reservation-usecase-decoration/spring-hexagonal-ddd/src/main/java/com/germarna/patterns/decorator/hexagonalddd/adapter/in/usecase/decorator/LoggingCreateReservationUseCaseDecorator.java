@@ -15,9 +15,10 @@ public class LoggingCreateReservationUseCaseDecorator extends BaseCreateReservat
 	}
 
 	@Override
-	public void createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
+	public UUID createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
 		log.info("[LOG] Creating reservation for guest {} in room {}", guestId, roomId);
-		super.createReservation(roomId, guestId, checkIn, checkOut);
+		final UUID reservationId = super.createReservation(roomId, guestId, checkIn, checkOut);
 		log.info("[LOG] Reservation successfully created.");
+		return reservationId;
 	}
 }

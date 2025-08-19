@@ -12,7 +12,7 @@ public class ValidationCreateReservationUseCaseDecorator extends BaseCreateReser
 	}
 
 	@Override
-	public void createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
+	public UUID createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
 		if (roomId == null || guestId == null || checkIn == null || checkOut == null) {
 			throw new IllegalArgumentException("[VALIDATION] Room ID, Guest ID, and dates must not be null");
 		}
@@ -22,6 +22,6 @@ public class ValidationCreateReservationUseCaseDecorator extends BaseCreateReser
 		}
 
 		System.out.println("[VALIDATION] Input data is valid.");
-		super.createReservation(roomId, guestId, checkIn, checkOut);
+		return super.createReservation(roomId, guestId, checkIn, checkOut);
 	}
 }

@@ -17,7 +17,7 @@ public class CreateReservationService implements CreateReservationUseCase {
 	}
 
 	@Override
-	public void createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
+	public UUID createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
 		final Reservation reservation = new Reservation(UUID.randomUUID(), roomId, guestId, checkIn, checkOut);
 
 		if (this.firstCall) {
@@ -30,5 +30,6 @@ public class CreateReservationService implements CreateReservationUseCase {
 		}
 
 		System.out.println("\t✅ Reservation created with ID: " + reservation.getReservationId());
+		return reservation.getReservationId();
 	}
 }

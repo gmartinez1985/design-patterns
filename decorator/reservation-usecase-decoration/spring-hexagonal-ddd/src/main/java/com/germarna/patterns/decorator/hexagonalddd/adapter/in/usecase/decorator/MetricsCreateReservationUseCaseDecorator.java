@@ -11,10 +11,11 @@ public class MetricsCreateReservationUseCaseDecorator extends BaseCreateReservat
 	}
 
 	@Override
-	public void createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
+	public UUID createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
 		final long start = System.nanoTime();
 		final long end = System.nanoTime();
-		super.createReservation(roomId, guestId, checkIn, checkOut);
+		final UUID reservationId = super.createReservation(roomId, guestId, checkIn, checkOut);
 		System.out.println("[METRICS] createReservation took " + (end - start) + " ns");
+		return reservationId;
 	}
 }

@@ -12,7 +12,7 @@ public abstract class BaseCreateReservationUseCaseDecorator implements CreateRes
 	protected final CreateReservationUseCase delegate;
 
 	@Override
-	public void createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
-		this.delegate.createReservation(roomId, guestId, checkIn, checkOut);
+	public UUID createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
+		return this.delegate.createReservation(roomId, guestId, checkIn, checkOut);
 	}
 }

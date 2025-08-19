@@ -12,14 +12,14 @@ public class AuthorizationCreateReservationUseCaseDecorator extends BaseCreateRe
 	}
 
 	@Override
-	public void createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
+	public UUID createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
 		if (!this.isAuthorized(guestId)) {
 			throw new SecurityException("Guest is not authorized.");
 		}
 
 		System.out.println("[AUTH] Guest " + guestId + " is authorized to create a reservation.");
 
-		super.createReservation(roomId, guestId, checkIn, checkOut);
+		return super.createReservation(roomId, guestId, checkIn, checkOut);
 	}
 
 	private boolean isAuthorized(UUID guestId) {

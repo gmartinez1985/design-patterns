@@ -14,8 +14,8 @@ public class TransactionalCreateReservationUseCaseDecorator extends BaseCreateRe
 
 	@Override
 	@Transactional
-	public void createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
+	public UUID createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut) {
 		System.out.println("[TRANSACTIONAL] Starting transactional createReservation");
-		super.createReservation(roomId, guestId, checkIn, checkOut);
+		return super.createReservation(roomId, guestId, checkIn, checkOut);
 	}
 }
