@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import java.util.Date;
 import java.util.UUID;
 
-//@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @SpringBootApplication
 public class ApplicationBoot {
 
