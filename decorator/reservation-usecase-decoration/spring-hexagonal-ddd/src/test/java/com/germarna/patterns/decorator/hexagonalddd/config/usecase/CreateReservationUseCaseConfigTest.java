@@ -17,34 +17,8 @@ class CreateReservationUseCaseConfigTest {
 	@Autowired
 	private CreateReservationUseCase createReservationUseCase;
 
-	// @Test
-	// void shouldAssembleDecoratorsInExpectedOrder() {
-	// // nivel más externo debería ser Authorization
-	// assertThat(this.createReservationUseCase).isInstanceOf(AuthorizationCreateReservationUseCaseDecorator.class);
-	//
-	// final var auth = (AuthorizationCreateReservationUseCaseDecorator)
-	// this.createReservationUseCase;
-	// assertThat(auth.getDelegate()).isInstanceOf(ValidationCreateReservationUseCaseDecorator.class);
-	//
-	// final var validation = (ValidationCreateReservationUseCaseDecorator)
-	// auth.getDelegate();
-	// assertThat(validation.getDelegate()).isInstanceOf(MetricsCreateReservationUseCaseDecorator.class);
-	//
-	// final var metrics = (MetricsCreateReservationUseCaseDecorator)
-	// validation.getDelegate();
-	// assertThat(metrics.getDelegate()).isInstanceOf(LoggingCreateReservationUseCaseDecorator.class);
-	//
-	// final var logging = (LoggingCreateReservationUseCaseDecorator)
-	// metrics.getDelegate();
-	// assertThat(logging.getDelegate()).isInstanceOf(TransactionalCreateReservationUseCaseDecorator.class);
-	//
-	// final var transactional = (TransactionalCreateReservationUseCaseDecorator)
-	// logging.getDelegate();
-	// assertThat(transactional.getDelegate()).isInstanceOf(CreateReservationService.class);
-	// }
-
 	@Test
-	void decorators_are_wired_in_expected_order() throws Exception {
+	void testDecoratorsWiringOrder() throws Exception {
 		final var auth = this.createReservationUseCase;
 		assertThat(auth).isInstanceOf(AuthorizationCreateReservationUseCaseDecorator.class);
 
