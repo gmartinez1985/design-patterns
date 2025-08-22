@@ -4,10 +4,11 @@ import com.germarna.patterns.decorator.hexagonalddd.application.port.out.client.
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.UUID;
-
+@Setter
 public class ResiliencePaymentClientDecorator extends BasePaymentClientDecorator {
 
 	@Autowired
@@ -27,7 +28,7 @@ public class ResiliencePaymentClientDecorator extends BasePaymentClientDecorator
 		return super.pay(reservationId, amount);
 	}
 
-	public boolean fallbackPay(UUID reservationId, double amount, Throwable throwable) {
+	private boolean fallbackPay(UUID reservationId, double amount, Throwable throwable) {
 		final io.github.resilience4j.circuitbreaker.CircuitBreaker cb = this.registry
 				.circuitBreaker("paymentCircuitBreaker");
 		System.out.println("⚠️ Circuit breaker fallback: payment failed for reservation " + reservationId + " due to "
@@ -42,6 +43,5 @@ public class ResiliencePaymentClientDecorator extends BasePaymentClientDecorator
 	private String printFailureRate(io.github.resilience4j.circuitbreaker.CircuitBreaker.Metrics metrics) {
 		final float failureRate = metrics.getFailureRate();
 		return failureRate == -1 ? "-" : String.valueOf(failureRate).concat("%");
-
 	}
 }
