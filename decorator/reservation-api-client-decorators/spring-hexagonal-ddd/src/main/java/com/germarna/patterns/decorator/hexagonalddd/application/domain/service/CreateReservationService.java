@@ -17,18 +17,19 @@ public class CreateReservationService implements CreateReservationUseCase {
 	}
 
 	@Override
-	public void createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut, UUID reservationId) {
+	public boolean createReservation(UUID roomId, UUID guestId, Date checkIn, Date checkOut, UUID reservationId) {
+		boolean paymentSuccessful = false;
 		final double totalAmount = this.calculateTotalAmount(roomId, checkIn, checkOut); // implement this method
 		final Reservation reservation = new Reservation(reservationId, roomId, guestId, checkIn, checkOut, totalAmount);
 
 		// Process payment
-		final boolean paymentSuccessful = this.paymentClient.pay(reservation.getReservationId(),
-				reservation.getTotalAmount());
+		paymentSuccessful = this.paymentClient.pay(reservation.getReservationId(), reservation.getTotalAmount());
 		if (!paymentSuccessful) {
 			throw new RuntimeException("Payment failed. Reservation not created.");
 		}
 
 		System.out.println("\tReservation created with ID: " + reservation.getReservationId());
+		return true;
 	}
 
 	private double calculateTotalAmount(UUID roomId, Date checkIn, Date checkOut) {
