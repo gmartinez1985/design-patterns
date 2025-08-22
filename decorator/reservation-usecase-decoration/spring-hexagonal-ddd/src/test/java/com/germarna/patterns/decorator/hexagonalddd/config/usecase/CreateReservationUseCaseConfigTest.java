@@ -1,21 +1,28 @@
 package com.germarna.patterns.decorator.hexagonalddd.config.usecase;
 
 import com.germarna.patterns.decorator.hexagonalddd.adapter.in.usecase.decorator.*;
+import com.germarna.patterns.decorator.hexagonalddd.application.domain.service.CreateReservationService;
 import com.germarna.patterns.decorator.hexagonalddd.application.port.in.CreateReservationUseCase;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.util.AopTestUtils;
 
 import java.lang.reflect.Field;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 class CreateReservationUseCaseConfigTest {
 
 	@Autowired
 	private CreateReservationUseCase createReservationUseCase;
+
+	@MockitoBean
+	private CommandLineRunner startupRunner;
 
 	@Test
 	void testDecoratorsWiringOrder() throws Exception {
@@ -34,22 +41,30 @@ class CreateReservationUseCaseConfigTest {
 		final var transactional = this.getDelegate(logging);
 		assertThat(transactional).isInstanceOf(TransactionalCreateReservationUseCaseDecorator.class);
 
-		final var nothing = this.getDelegate(transactional);
-		assertNull(nothing);
+		final var service = this.getDelegate(transactional);
+		assertThat(service).isInstanceOf(CreateReservationService.class);
 
+		assertThrows(NoSuchFieldException.class, () -> this.getDelegate(service));
 	}
 
 	private Object getDelegate(Object target) throws Exception {
-		Class<?> clazz = target.getClass();
+		final Object current = this.unwrapProxy(target);
+
+		Class<?> clazz = current.getClass();
 		while (clazz != null) {
 			try {
 				final Field field = clazz.getDeclaredField("delegate");
 				field.setAccessible(true);
-				return field.get(target);
+				final Object value = field.get(current);
+				return value == null ? null : this.unwrapProxy(value);
 			} catch (final NoSuchFieldException e) {
 				clazz = clazz.getSuperclass();
 			}
 		}
-		throw new NoSuchFieldException("No delegate field found in " + target.getClass());
+		throw new NoSuchFieldException("No delegate field found in " + current.getClass());
+	}
+
+	private Object unwrapProxy(Object candidate) throws Exception {
+		return AopTestUtils.getTargetObject(candidate);
 	}
 }
