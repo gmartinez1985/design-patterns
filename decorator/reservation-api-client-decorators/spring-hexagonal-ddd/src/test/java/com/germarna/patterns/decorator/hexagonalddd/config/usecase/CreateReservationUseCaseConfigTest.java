@@ -7,24 +7,20 @@ import com.germarna.patterns.decorator.hexagonalddd.application.port.out.client.
 import com.germarna.patterns.decorator.hexagonalddd.testutil.DecoratorTestUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@SpringBootTest
+@SpringBootTest(properties = "app.startup-runner.enabled=false")
 class CreateReservationUseCaseConfigTest {
 
 	@Autowired
 	private CreateReservationUseCase createReservationUseCase;
 
 	@MockitoBean
-	private PaymentClient paymentClient; // Mockeado para que no llame al mundo real
-
-	@MockitoBean
-	private CommandLineRunner startupRunner; // Mockeado para que no arruine el contexto
+	private PaymentClient paymentClient;
 
 	@Test
 	void testDecoratorsWiringOrder() throws Exception {

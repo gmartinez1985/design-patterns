@@ -9,9 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import java.time.Duration;
@@ -26,6 +25,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+@SpringBootTest(properties = "app.startup-runner.enabled=false")
 class CreateReservationIT {
 
 	@Autowired
@@ -33,9 +33,6 @@ class CreateReservationIT {
 
 	@MockitoSpyBean
 	private PaymentClient paymentClient;
-
-	@MockitoBean
-	private CommandLineRunner startupRunner;
 
 	@MockitoSpyBean
 	private HttpRestPaymentClientAdapter httpRestPaymentClientAdapter;

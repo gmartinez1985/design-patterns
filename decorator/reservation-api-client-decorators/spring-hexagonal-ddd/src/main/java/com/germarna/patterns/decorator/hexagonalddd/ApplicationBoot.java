@@ -4,6 +4,7 @@ import com.germarna.patterns.decorator.hexagonalddd.application.port.in.usecase.
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -22,6 +23,7 @@ public class ApplicationBoot {
 	}
 
 	@Bean
+	@ConditionalOnProperty(name = "app.startup-runner.enabled", havingValue = "true", matchIfMissing = false)
 	CommandLineRunner startupRunner(CreateReservationUseCase createReservationUseCase, CacheManager cacheManager) {
 		return args -> {
 			final UUID roomId = UUID.randomUUID();

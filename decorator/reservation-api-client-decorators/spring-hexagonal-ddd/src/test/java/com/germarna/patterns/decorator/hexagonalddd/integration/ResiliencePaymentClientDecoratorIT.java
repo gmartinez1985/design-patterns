@@ -6,7 +6,6 @@ import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
@@ -16,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doThrow;
 
-@SpringBootTest
+@SpringBootTest(properties = "app.startup-runner.enabled=false")
 class ResiliencePaymentClientDecoratorIT {
 
 	@Autowired
@@ -27,9 +26,6 @@ class ResiliencePaymentClientDecoratorIT {
 
 	@Autowired
 	private CircuitBreakerRegistry circuitBreakerRegistry;
-
-	@MockitoBean
-	private CommandLineRunner startupRunner;
 
 	@Test
 	@DisplayName("Fallback is triggered and circuit breaker sees failure")
