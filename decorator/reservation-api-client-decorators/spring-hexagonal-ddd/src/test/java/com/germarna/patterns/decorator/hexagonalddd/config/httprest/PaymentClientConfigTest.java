@@ -1,4 +1,4 @@
-package com.germarna.patterns.decorator.hexagonalddd.config.config.httprest;
+package com.germarna.patterns.decorator.hexagonalddd.config.httprest;
 
 import com.germarna.patterns.decorator.hexagonalddd.adapter.out.httprest.decorator.CachedPaymentClientDecorator;
 import com.germarna.patterns.decorator.hexagonalddd.adapter.out.httprest.decorator.ResiliencePaymentClientDecorator;

@@ -3,6 +3,7 @@ package com.germarna.patterns.decorator.hexagonalddd.integration;
 import com.germarna.patterns.decorator.hexagonalddd.adapter.out.httprest.decorator.ResiliencePaymentClientDecorator;
 import com.germarna.patterns.decorator.hexagonalddd.application.port.out.client.PaymentClient;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,16 +13,17 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doThrow;
 
 @SpringBootTest
 class ResiliencePaymentClientDecoratorIT {
 
-	@MockitoBean
-	private PaymentClient failingPaymentClient; // delegate que siempre falla
-
 	@Autowired
-	private ResiliencePaymentClientDecorator resilienceDecorator;
+	private ResiliencePaymentClientDecorator decorator;
+
+	@MockitoBean
+	private PaymentClient failingDelegate;
 
 	@Autowired
 	private CircuitBreakerRegistry circuitBreakerRegistry;
@@ -30,20 +32,19 @@ class ResiliencePaymentClientDecoratorIT {
 	private CommandLineRunner startupRunner;
 
 	@Test
-	void fallbackIsExecutedWhenDelegateFails() {
-		// Arrange: el delegate siempre lanza RuntimeException
-		doThrow(new RuntimeException("Simulated payment error")).when(this.failingPaymentClient).pay(UUID.randomUUID(),
-				100.0);
+	@DisplayName("Fallback is triggered and circuit breaker sees failure")
+	void shouldTriggerFallbackAndRecordFailure() {
+		// GIVEN
+		final UUID reservationId = UUID.randomUUID();
+		final double amount = 100.0;
+		doThrow(new RuntimeException("Simulated failure")).when(this.failingDelegate).pay(reservationId, amount);
 
-		// Spring inyectará ResiliencePaymentClientDecorator con proxy de Resilience4j
-		final ResiliencePaymentClientDecorator decorator = new ResiliencePaymentClientDecorator(
-				this.failingPaymentClient);
-		decorator.setRegistry(this.circuitBreakerRegistry);
+		// WHEN
+		final boolean result = this.decorator.pay(reservationId, amount);
 
-		// Act
-		final boolean result = decorator.pay(UUID.randomUUID(), 100.0);
-
-		// Assert: fallback debe devolver false
-		assertFalse(result, "Fallback should return false when delegate fails");
+		// THEN
+		assertFalse(result, "Fallback should return false");
+		final var cb = this.circuitBreakerRegistry.circuitBreaker("paymentCircuitBreaker");
+		assertTrue(cb.getMetrics().getNumberOfFailedCalls() > 0, "Circuit breaker should track failed calls");
 	}
 }
