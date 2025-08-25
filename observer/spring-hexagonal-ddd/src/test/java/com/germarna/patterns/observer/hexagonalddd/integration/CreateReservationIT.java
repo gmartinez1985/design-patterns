@@ -12,9 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import java.util.UUID;
@@ -24,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-@SpringBootTest
+@SpringBootTest(properties = "app.startup-runner.enabled=false")
 class CreateReservationIT {
 
 	@Autowired
@@ -43,10 +41,6 @@ class CreateReservationIT {
 	private SlackNotificationSender slackNotificationSender;
 	@MockitoSpyBean
 	private SmsNotificationSender smsNotificationSender;
-
-	// Prevents this from running at app startup
-	@MockitoBean
-	private CommandLineRunner startupRunner;
 
 	@Test
 	@DisplayName("When creating a reservation, notifications are sent and observers receive the correct event")

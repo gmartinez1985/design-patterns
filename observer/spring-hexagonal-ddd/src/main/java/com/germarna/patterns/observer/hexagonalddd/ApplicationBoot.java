@@ -4,6 +4,7 @@ import com.germarna.patterns.observer.hexagonalddd.application.port.in.CreateRes
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
@@ -13,6 +14,7 @@ public class ApplicationBoot {
 		SpringApplication.run(ApplicationBoot.class, args);
 	}
 	@Bean
+	@ConditionalOnProperty(name = "app.startup-runner.enabled", havingValue = "true", matchIfMissing = false)
 	CommandLineRunner startupRunner(CreateReservationUseCase createReservationUseCase) {
 		return args -> {
 			createReservationUseCase.createReservation("John Doe", "Deluxe Suite");
