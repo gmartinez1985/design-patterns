@@ -5,9 +5,7 @@ import com.germarna.patterns.decorator.hexagonalddd.application.domain.service.C
 import com.germarna.patterns.decorator.hexagonalddd.application.port.in.CreateReservationUseCase;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.util.AopTestUtils;
 
 import java.lang.reflect.Field;
@@ -15,14 +13,11 @@ import java.lang.reflect.Field;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@SpringBootTest
+@SpringBootTest(properties = "app.startup-runner.enabled=false")
 class CreateReservationUseCaseConfigTest {
 
 	@Autowired
 	private CreateReservationUseCase createReservationUseCase;
-
-	@MockitoBean
-	private CommandLineRunner startupRunner;
 
 	@Test
 	void testDecoratorsWiringOrder() throws Exception {

@@ -5,10 +5,8 @@ import com.germarna.patterns.decorator.hexagonalddd.application.port.out.SaveDum
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import java.util.Date;
@@ -20,7 +18,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-@SpringBootTest
+@SpringBootTest(properties = "app.startup-runner.enabled=false")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class CreateReservationIT {
 
@@ -29,10 +27,6 @@ class CreateReservationIT {
 
 	@MockitoSpyBean
 	private SaveDummyPort saveDummyPort;
-
-	// Prevents this from running at app startup
-	@MockitoBean
-	private CommandLineRunner startupRunner;
 
 	@Test
 	@DisplayName("When creating a reservation for the first time, then it should succeed and persist twice")

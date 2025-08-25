@@ -4,6 +4,7 @@ import com.germarna.patterns.decorator.hexagonalddd.application.port.in.CreateRe
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Date;
@@ -16,6 +17,7 @@ public class ApplicationBoot {
 		SpringApplication.run(ApplicationBoot.class, args);
 	}
 	@Bean
+	@ConditionalOnProperty(name = "app.startup-runner.enabled", havingValue = "true", matchIfMissing = false)
 	CommandLineRunner startupRunner(CreateReservationUseCase createReservationUseCase) {
 		return args -> {
 			final UUID roomId = UUID.randomUUID();
