@@ -13,7 +13,6 @@ public class ReservationCreatedEmailObserver implements Observer<ReservationCrea
 
 	@Override
 	public void update(ReservationCreatedEvent event) {
-		this.emailNotificationSender.sendNotification(event.getReservationId(), event.getGuestName(),
-				event.getRoomType());
+		this.emailNotificationSender.sendNotification(event.reservationId(), event.guestName(), event.roomType());
 	}
 }

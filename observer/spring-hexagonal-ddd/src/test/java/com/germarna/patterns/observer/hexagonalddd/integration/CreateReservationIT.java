@@ -76,8 +76,8 @@ class CreateReservationIT {
 			verify((ReservationCreatedSmsObserver) observer, times(1)).update(captor.capture());
 		}
 		final ReservationCreatedEvent event = captor.getValue();
-		assertEquals(reservationId, event.getReservationId());
-		assertEquals(guestName, event.getGuestName());
-		assertEquals(roomType, event.getRoomType());
+		assertEquals(reservationId, event.reservationId());
+		assertEquals(guestName, event.guestName());
+		assertEquals(roomType, event.roomType());
 	}
 }

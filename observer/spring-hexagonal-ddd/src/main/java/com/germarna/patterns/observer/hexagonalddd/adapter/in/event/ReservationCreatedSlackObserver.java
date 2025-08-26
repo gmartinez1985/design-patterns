@@ -13,7 +13,6 @@ public class ReservationCreatedSlackObserver implements Observer<ReservationCrea
 
 	@Override
 	public void update(ReservationCreatedEvent event) {
-		this.slackNotificationSender.sendNotification(event.getReservationId(), event.getGuestName(),
-				event.getRoomType());
+		this.slackNotificationSender.sendNotification(event.reservationId(), event.guestName(), event.roomType());
 	}
 }

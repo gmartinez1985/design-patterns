@@ -13,7 +13,6 @@ public class ReservationCreatedSmsObserver implements Observer<ReservationCreate
 
 	@Override
 	public void update(ReservationCreatedEvent event) {
-		this.smsNotificationSender.sendNotification(event.getReservationId(), event.getGuestName(),
-				event.getRoomType());
+		this.smsNotificationSender.sendNotification(event.reservationId(), event.guestName(), event.roomType());
 	}
 }
