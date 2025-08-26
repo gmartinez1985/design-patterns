@@ -153,5 +153,6 @@ class SubjectTest {
 	void shouldHandleNullEventsGracefully() {
 		Subject.INSTANCE.attach(DummyEventOne.class, this.observerToDummyEventOne);
 		assertDoesNotThrow(() -> Subject.INSTANCE.notifyObservers(null));
+		assertEquals(0, this.observerToDummyEventOne.updateCount, "No observer should be updated when event is null");
 	}
 }
