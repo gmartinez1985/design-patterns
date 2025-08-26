@@ -42,8 +42,8 @@ class CreateReservationIT {
 
 		// --- THEN ---
 		assertNotNull(reservationId, "Reservation ID should not be null");
-		// As we don’t have a real DB get operation,
-		// the only observable effect is that the save operation was triggered.
+		// As we don’t have a real DB get operation, the only observable effect is that
+		// the save operation was triggered.
 		verify(this.saveDummyPort, times(2)).save(anyString()); // "First insert", "Second insert"
 	}
 
@@ -64,31 +64,51 @@ class CreateReservationIT {
 				() -> this.createReservationUseCase.createReservation(roomId, guestId, checkIn, checkOut),
 				"💥 Simulated failure on second call");
 
-		// --- AND verify SaveDummyPort was called with 'Third insert' ---
+		// --- AND THEN (verify side-effect) ---
 		verify(this.saveDummyPort, times(1)).save("Third insert");
-	}
-
-	@Test
-	@DisplayName("Full chain: validation should fail with null values")
-	void shouldFailValidationWithNullValues() {
-		final UUID roomId = null;
-		final UUID guestId = UUID.randomUUID();
-		final Date checkIn = new Date();
-		final Date checkOut = new Date(checkIn.getTime() + 1000);
-
-		assertThrows(IllegalArgumentException.class,
-				() -> this.createReservationUseCase.createReservation(roomId, guestId, checkIn, checkOut));
 	}
 
 	@Test
 	@DisplayName("Full chain: validation should fail when check-in after check-out")
 	void shouldFailValidationWithInvalidDates() {
+		// --- GIVEN ---
 		final UUID roomId = UUID.randomUUID();
 		final UUID guestId = UUID.randomUUID();
 		final Date checkIn = new Date();
-		final Date checkOut = new Date(checkIn.getTime() - 1000);
+		final Date checkOut = new Date(checkIn.getTime() - 1000); // check-in after check-out
 
+		// --- WHEN / THEN ---
 		assertThrows(IllegalArgumentException.class,
 				() -> this.createReservationUseCase.createReservation(roomId, guestId, checkIn, checkOut));
+	}
+
+	@Test
+	@DisplayName("Full chain: validation should fail when any required input is null (roomId, guestId, checkIn, checkOut)")
+	void shouldFailValidationWhenAnyRequiredInputIsNull() {
+		// --- GIVEN (common valid base) ---
+		final UUID baseRoomId = UUID.randomUUID();
+		final UUID baseGuestId = UUID.randomUUID();
+		final Date baseCheckIn = new Date();
+		final Date baseCheckOut = new Date(baseCheckIn.getTime() + 1_000L);
+
+		// “parametrized” loop without restarting the Spring context
+		final Object[][] cases = new Object[][]{{null, baseGuestId, baseCheckIn, baseCheckOut, "roomId=null"},
+				{baseRoomId, null, baseCheckIn, baseCheckOut, "guestId=null"},
+				{baseRoomId, baseGuestId, null, baseCheckOut, "checkIn=null"},
+				{baseRoomId, baseGuestId, baseCheckIn, null, "checkOut=null"}};
+
+		for (final Object[] c : cases) {
+			// --- GIVEN (case) ---
+			final UUID roomId = (UUID) c[0];
+			final UUID guestId = (UUID) c[1];
+			final Date checkIn = (Date) c[2];
+			final Date checkOut = (Date) c[3];
+			final String label = (String) c[4];
+
+			// --- WHEN / THEN ---
+			assertThrows(IllegalArgumentException.class,
+					() -> this.createReservationUseCase.createReservation(roomId, guestId, checkIn, checkOut),
+					"Expected validation failure for case: " + label);
+		}
 	}
 }
