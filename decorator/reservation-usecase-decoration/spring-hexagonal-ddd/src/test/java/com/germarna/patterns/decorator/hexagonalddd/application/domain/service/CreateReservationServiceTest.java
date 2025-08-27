@@ -39,7 +39,7 @@ public class CreateReservationServiceTest {
 	@DisplayName("CreateReservationService throws on second call")
 	void testCreateReservationSecondCall() {
 		// first call flips the flag
-        this.service.createReservation(UUID.randomUUID(), UUID.randomUUID(), new Date(), new Date());
+		this.service.createReservation(UUID.randomUUID(), UUID.randomUUID(), new Date(), new Date());
 
 		final RuntimeException ex = assertThrows(RuntimeException.class,
 				() -> this.service.createReservation(UUID.randomUUID(), UUID.randomUUID(), new Date(), new Date()));
@@ -47,16 +47,4 @@ public class CreateReservationServiceTest {
 		assertEquals("💥 Simulated failure on second call", ex.getMessage());
 		verify(this.saveDummyPort, times(1)).save("Third insert");
 	}
-
-	// @Test
-	// @DisplayName("CreateReservationService returns a non-null reservation ID")
-	// void testCreateReservation() {
-	// final CreateReservationUseCase service = new CreateReservationService();
-	// final String guestName = "John Doe";
-	// final String roomType = "Deluxe";
-	//
-	// final UUID reservationId = service.createReservation(guestName, roomType);
-	//
-	// assertNotNull(reservationId);
-	// }
 }
