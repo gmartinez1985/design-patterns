@@ -4,7 +4,7 @@ import com.germarna.patterns.decorator.hexagonalddd.adapter.in.usecase.decorator
 import com.germarna.patterns.decorator.hexagonalddd.application.domain.service.CreateReservationService;
 import com.germarna.patterns.decorator.hexagonalddd.application.port.in.usecase.CreateReservationUseCase;
 import com.germarna.patterns.decorator.hexagonalddd.application.port.out.client.PaymentClient;
-import com.germarna.patterns.decorator.hexagonalddd.testutil.DecoratorTestUtils;
+import com.germarna.patterns.decorator.hexagonalddd.config.helpers.DecoratorTestUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

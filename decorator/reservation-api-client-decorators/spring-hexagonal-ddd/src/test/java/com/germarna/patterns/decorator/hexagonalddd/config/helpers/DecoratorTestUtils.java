@@ -1,4 +1,4 @@
-package com.germarna.patterns.decorator.hexagonalddd.testutil;
+package com.germarna.patterns.decorator.hexagonalddd.config.helpers;
 
 import org.springframework.test.util.AopTestUtils;
 
