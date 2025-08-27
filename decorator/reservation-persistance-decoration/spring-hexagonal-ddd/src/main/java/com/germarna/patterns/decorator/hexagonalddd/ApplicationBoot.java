@@ -7,6 +7,7 @@ import com.germarna.patterns.decorator.hexagonalddd.application.port.in.SaveRese
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.caffeine.CaffeineCache;
@@ -23,6 +24,7 @@ public class ApplicationBoot {
 		SpringApplication.run(ApplicationBoot.class, args);
 	}
 	@Bean
+	@ConditionalOnProperty(name = "app.startup-runner.enabled", havingValue = "true", matchIfMissing = false)
 	CommandLineRunner startupRunner(SaveReservationUseCase saveReservationUseCase,
 			FindReservationUseCase findReservationUseCase,
 			ChangeDatesOfReservationUseCase changeDatesOfReservationUseCase, CacheManager cacheManager) {
