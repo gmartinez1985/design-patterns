@@ -7,7 +7,7 @@ import java.util.UUID;
 public abstract class BaseReservationDecorator implements ReservationComponent {
 	protected ReservationComponent delegate;
 
-	public BaseReservationDecorator(ReservationComponent delegate) {
+	protected BaseReservationDecorator(ReservationComponent delegate) {
 		this.delegate = delegate;
 	}
 
