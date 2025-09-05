@@ -2,7 +2,7 @@ package com.germarna.patterns.observer.hexagonalddd.application.domain.service;
 
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
 import com.germarna.patterns.observer.hexagonalddd.application.port.in.usecase.FindReservationUseCase;
-import com.germarna.patterns.observer.hexagonalddd.application.port.out.FindReservationPort;
+import com.germarna.patterns.observer.hexagonalddd.application.port.out.reservation.FindReservationPort;
 
 import java.util.UUID;
 

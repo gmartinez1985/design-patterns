@@ -1,8 +1,8 @@
 package com.germarna.patterns.observer.hexagonalddd;
 
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.read.repository.ReservationMongoRepository;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.entity.RoomJpaEntity;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.repository.RoomJpaRepository;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.repository.ReservationMongoRepository;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.datamodel.RoomJpaEntity;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.repository.RoomJpaRepository;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.RoomType;
 import com.germarna.patterns.observer.hexagonalddd.application.port.in.usecase.CreateReservationUseCase;

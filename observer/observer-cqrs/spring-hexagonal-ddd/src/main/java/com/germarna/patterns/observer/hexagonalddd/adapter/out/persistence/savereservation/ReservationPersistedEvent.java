@@ -1,4 +1,4 @@
-package com.germarna.patterns.observer.hexagonalddd.adapter.events;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.savereservation;
 
 import java.time.Instant;
 import java.util.Date;

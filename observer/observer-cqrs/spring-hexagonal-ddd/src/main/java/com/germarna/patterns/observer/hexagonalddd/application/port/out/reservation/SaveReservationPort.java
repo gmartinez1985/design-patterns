@@ -1,4 +1,4 @@
-package com.germarna.patterns.observer.hexagonalddd.application.port.out;
+package com.germarna.patterns.observer.hexagonalddd.application.port.out.reservation;
 
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
 

@@ -1,10 +1,10 @@
-package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.findreservation;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.findreservation;
 
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.entity.ReservationJpaEntity;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.mapper.ReservationJpaMapper;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.repository.ReservationJpaRepository;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.datamodel.ReservationJpaEntity;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.mapper.ReservationJpaMapper;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.repository.ReservationJpaRepository;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
-import com.germarna.patterns.observer.hexagonalddd.application.port.out.FindReservationPort;
+import com.germarna.patterns.observer.hexagonalddd.application.port.out.reservation.FindReservationPort;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
-package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.mapper;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.mapper;
 
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.entity.ReservationJpaEntity;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.datamodel.ReservationJpaEntity;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
 import org.mapstruct.Mapper;
 

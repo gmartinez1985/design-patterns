@@ -1,11 +1,10 @@
-package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.savereservation;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.savereservation;
 
-import com.germarna.patterns.observer.hexagonalddd.adapter.events.ReservationPersistedEvent;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.entity.ReservationJpaEntity;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.mapper.ReservationJpaMapper;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.repository.ReservationJpaRepository;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.datamodel.ReservationJpaEntity;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.mapper.ReservationJpaMapper;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.repository.ReservationJpaRepository;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
-import com.germarna.patterns.observer.hexagonalddd.application.port.out.SaveReservationPort;
+import com.germarna.patterns.observer.hexagonalddd.application.port.out.reservation.SaveReservationPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;

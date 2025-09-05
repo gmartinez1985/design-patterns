@@ -1,4 +1,4 @@
-package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.read.document;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.datamodel;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReservationDocument {
+public class ReservationMongoDocument {
 
 	@Id
 	private UUID reservationId;
