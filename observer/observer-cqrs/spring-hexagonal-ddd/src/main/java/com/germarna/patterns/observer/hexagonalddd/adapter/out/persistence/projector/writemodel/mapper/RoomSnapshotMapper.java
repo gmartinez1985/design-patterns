@@ -1,7 +1,7 @@
-package com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.mapper;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.mapper;
 
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.model.RoomJpaEntity;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.model.RoomSnapshot;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.model.RoomSnapshot;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

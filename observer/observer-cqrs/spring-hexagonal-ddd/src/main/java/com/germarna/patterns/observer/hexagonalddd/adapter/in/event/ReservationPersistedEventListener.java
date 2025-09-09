@@ -1,7 +1,7 @@
 package com.germarna.patterns.observer.hexagonalddd.adapter.in.event;
 
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.savereservation.ReservationPersistedEvent;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.ReservationProjectorService;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.ReservationProjectorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;

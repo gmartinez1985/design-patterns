@@ -1,4 +1,4 @@
-package com.germarna.patterns.observer.hexagonalddd.services.cqrs;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector;
 
 import java.time.Instant;
 import java.util.Date;

@@ -1,7 +1,7 @@
-package com.germarna.patterns.observer.hexagonalddd.services.cqrs.readmodel.mapper;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.readmodel.mapper;
 
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.model.ReservationMongoDocument;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.ReservationProjectionView;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.ReservationProjectionView;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

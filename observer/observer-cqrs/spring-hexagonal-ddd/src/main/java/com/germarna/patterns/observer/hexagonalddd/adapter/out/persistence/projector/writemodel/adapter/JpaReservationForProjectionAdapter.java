@@ -1,10 +1,10 @@
-package com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.adapter;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.adapter;
 
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.model.ReservationJpaEntity;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.repository.ReservationJpaRepository;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.mapper.ReservationSnapshotMapper;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.model.ReservationSnapshot;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.port.out.ReservationWriteModelLoader;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.mapper.ReservationSnapshotMapper;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.port.out.ReservationWriteModelLoader;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.model.ReservationSnapshot;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

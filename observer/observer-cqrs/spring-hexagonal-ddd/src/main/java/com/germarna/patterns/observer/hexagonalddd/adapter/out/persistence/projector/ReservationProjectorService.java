@@ -1,11 +1,11 @@
-package com.germarna.patterns.observer.hexagonalddd.services.cqrs;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector;
 
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.readmodel.port.in.ReservationReadModelUpserter;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.model.ReservationSnapshot;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.model.RoomSnapshot;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.port.out.ReservationWriteModelLoader;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.port.out.RoomWriteModelLoader;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.savereservation.ReservationPersistedEvent;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.model.ReservationSnapshot;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.model.RoomSnapshot;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.port.out.ReservationWriteModelLoader;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.port.out.RoomWriteModelLoader;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.readmodel.port.in.ReservationReadModelUpserter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

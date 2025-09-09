@@ -1,9 +1,9 @@
-package com.germarna.patterns.observer.hexagonalddd.services.cqrs;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector;
 
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.model.ReservationSnapshot;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.model.RoomSnapshot;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.savereservation.ReservationPersistedEvent;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Room;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.model.ReservationSnapshot;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.model.RoomSnapshot;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

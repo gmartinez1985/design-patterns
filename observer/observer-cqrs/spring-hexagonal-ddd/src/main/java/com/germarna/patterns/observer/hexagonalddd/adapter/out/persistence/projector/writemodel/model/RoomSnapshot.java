@@ -1,4 +1,4 @@
-package com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.model;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.model;
 
 import java.util.UUID;
 

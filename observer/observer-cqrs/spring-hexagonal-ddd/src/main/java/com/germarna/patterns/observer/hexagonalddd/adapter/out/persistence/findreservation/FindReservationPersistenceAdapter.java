@@ -2,7 +2,6 @@ package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.find
 
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.mapper.ReservationMongoMapper;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.model.ReservationMongoDocument;
-import com.germarna.patterns.observer.hexagonalddd.services.cqrs.readmodel.mapper.ReservationViewMapper;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.repository.ReservationMongoRepository;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
 import com.germarna.patterns.observer.hexagonalddd.application.port.out.reservation.FindReservationPort;
