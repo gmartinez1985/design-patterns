@@ -1,8 +1,9 @@
 package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector;
 
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.model.ReservationSnapshot;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.model.RoomSnapshot;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.savereservation.ReservationPersistedEvent;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.model.ReservationMongoDocument;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.model.ReservationJpaEntity;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.model.RoomJpaEntity;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.operations.savereservation.ReservationPersistedEvent;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Room;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -14,8 +15,8 @@ public interface ReservationProjectionMapper {
 	@Mapping(target = "guestEmail", source = "reservation.guestEmail")
 	@Mapping(target = "room", source = "room")
 	@Mapping(target = "timestamp", source = "event.timestamp")
-	ReservationProjectionView toView(ReservationSnapshot reservation, RoomSnapshot room, ReservationPersistedEvent event);
+	ReservationMongoDocument toMongoDocument(ReservationJpaEntity reservation, RoomJpaEntity room, ReservationPersistedEvent event);
 
 	@Mapping(target = "type", expression = "java(room.getType().name())") // enum → String
-	ReservationProjectionView.RoomView toView(Room room);
+	ReservationMongoDocument.RoomSnapshot toMongoDocument(Room room);
 }

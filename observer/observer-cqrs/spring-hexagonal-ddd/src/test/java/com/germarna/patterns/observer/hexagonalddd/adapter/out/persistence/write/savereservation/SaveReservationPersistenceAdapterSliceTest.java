@@ -2,8 +2,8 @@ package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.writ
 
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.model.ReservationJpaEntity;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.repository.ReservationJpaRepository;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.savereservation.ReservationPersistedEvent;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.savereservation.SaveReservationPersistenceAdapter;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.operations.savereservation.ReservationPersistedEvent;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.operations.savereservation.SaveReservationPersistenceAdapter;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.mapper.ReservationJpaMapperImpl;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.helpers.JpaSliceTestSupport;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;

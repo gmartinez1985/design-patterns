@@ -1,28 +1,37 @@
 package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector;
 
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.readmodel.port.in.ReservationReadModelUpserter;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.model.ReservationSnapshot;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.model.RoomSnapshot;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.port.out.ReservationWriteModelLoader;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.port.out.RoomWriteModelLoader;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.savereservation.ReservationPersistedEvent;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.model.ReservationMongoDocument;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.repository.ReservationMongoRepository;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.model.ReservationJpaEntity;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.model.RoomJpaEntity;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.repository.ReservationJpaRepository;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.repository.RoomJpaRepository;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.operations.savereservation.ReservationPersistedEvent;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class ReservationProjectorService {
-	private final ReservationWriteModelLoader reservationLoader;
-	private final RoomWriteModelLoader roomLoader;
+	private final ReservationJpaRepository reservationJpaRepository;
+	private final RoomJpaRepository roomJpaRepository;
 	private final ReservationProjectionMapper projectionMapper;
-	private final ReservationReadModelUpserter readModelUpserter;
+	private final ReservationMongoRepository reservationMongoRepository;
 
 	@Transactional(readOnly = true)
 	public void projectReservation(ReservationPersistedEvent event) {
-		final ReservationSnapshot reservation = this.reservationLoader.load(event.reservationId());
-		final RoomSnapshot room = this.roomLoader.load(reservation.roomId());
-		final ReservationProjectionView view = this.projectionMapper.toView(reservation, room, event);
-		this.readModelUpserter.upsert(view);
+		final UUID reservationId = event.reservationId();
+		final UUID roomId = event.roomId();
+
+		final ReservationJpaEntity reservation =  this.reservationJpaRepository.findById(reservationId)
+				.orElseThrow(() -> new EntityNotFoundException("Reservation not found: " + reservationId));
+		final RoomJpaEntity room = this.roomJpaRepository.findById(roomId)
+				.orElseThrow(() -> new EntityNotFoundException("Room not found: " + roomId));
+		ReservationMongoDocument document = projectionMapper.toMongoDocument(reservation, room, event);
+		reservationMongoRepository.save(document);
 	}
 }

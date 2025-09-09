@@ -1,4 +1,4 @@
-package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.findreservation;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.operations.findreservation;
 
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.mapper.ReservationMongoMapper;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.model.ReservationMongoDocument;

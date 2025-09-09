@@ -1,6 +1,6 @@
 package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.findreservation;
 
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.findreservation.FindReservationPersistenceAdapter;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.operations.findreservation.FindReservationPersistenceAdapter;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.mapper.ReservationJpaMapperImpl;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.helpers.JpaSliceTestSupport;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
