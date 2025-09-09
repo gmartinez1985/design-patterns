@@ -1,4 +1,4 @@
-package com.germarna.patterns.observer.hexagonalddd.services.readmodel.projection.model;
+package com.germarna.patterns.observer.hexagonalddd.services.cqrs;
 
 import java.time.Instant;
 import java.util.Date;

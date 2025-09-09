@@ -12,6 +12,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
   h2:
     console:
       enabled: true
@@ -26,3 +30,9 @@ spring:
     exclude:
       - de.flapdoodle.embed.mongo.spring.autoconfigure.EmbeddedMongoAutoConfiguration
 de.flapdoodle.mongodb.embedded.version: 6.0.5
+
+logging:
+  level:
+    org.hibernate:
+      SQL: DEBUG
+      orm.jdbc.bind: TRACE

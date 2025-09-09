@@ -1,6 +1,6 @@
 package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.repository;
 
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.datamodel.ReservationMongoDocument;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.model.ReservationMongoDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.datamodel;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

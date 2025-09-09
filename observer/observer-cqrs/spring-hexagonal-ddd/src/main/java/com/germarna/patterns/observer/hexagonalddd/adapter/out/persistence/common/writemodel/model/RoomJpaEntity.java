@@ -1,4 +1,4 @@
-package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.datamodel;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.model;
 
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.RoomType;
 import jakarta.persistence.*;

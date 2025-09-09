@@ -1,13 +1,11 @@
 package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.mapper;
 
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.datamodel.ReservationMongoDocument;
-import com.germarna.patterns.observer.hexagonalddd.services.readmodel.projection.model.ReservationProjectionView;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.model.ReservationMongoDocument;
+import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
+import com.germarna.patterns.observer.hexagonalddd.services.cqrs.ReservationProjectionView;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface ReservationMongoMapper {
-	// @Mapping(target = "room", source = "room")
-	ReservationMongoDocument toDocument(ReservationProjectionView view);
-
-	ReservationMongoDocument.RoomSnapshot toRoomSnapshot(ReservationProjectionView.RoomView room);
+	Reservation toDomain(ReservationMongoDocument document);
 }

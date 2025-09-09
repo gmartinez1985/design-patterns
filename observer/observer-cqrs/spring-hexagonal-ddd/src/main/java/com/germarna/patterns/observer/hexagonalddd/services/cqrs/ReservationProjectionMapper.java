@@ -1,9 +1,9 @@
-package com.germarna.patterns.observer.hexagonalddd.services.readmodel.projection.mapper;
+package com.germarna.patterns.observer.hexagonalddd.services.cqrs;
 
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.savereservation.ReservationPersistedEvent;
-import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Room;
-import com.germarna.patterns.observer.hexagonalddd.services.readmodel.projection.model.ReservationProjectionView;
+import com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.model.ReservationSnapshot;
+import com.germarna.patterns.observer.hexagonalddd.services.cqrs.writemodel.model.RoomSnapshot;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -14,7 +14,7 @@ public interface ReservationProjectionMapper {
 	@Mapping(target = "guestEmail", source = "reservation.guestEmail")
 	@Mapping(target = "room", source = "room")
 	@Mapping(target = "timestamp", source = "event.timestamp")
-	ReservationProjectionView toView(Reservation reservation, Room room, ReservationPersistedEvent event);
+	ReservationProjectionView toView(ReservationSnapshot reservation, RoomSnapshot room, ReservationPersistedEvent event);
 
 	@Mapping(target = "type", expression = "java(room.getType().name())") // enum → String
 	ReservationProjectionView.RoomView toView(Room room);

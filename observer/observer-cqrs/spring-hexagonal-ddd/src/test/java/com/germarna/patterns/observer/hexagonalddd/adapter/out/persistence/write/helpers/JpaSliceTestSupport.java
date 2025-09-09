@@ -1,7 +1,7 @@
 package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.helpers;
 
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.datamodel.ReservationJpaEntity;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.datamodel.RoomJpaEntity;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.model.ReservationJpaEntity;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.model.RoomJpaEntity;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.repository.ReservationJpaRepository;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.repository.RoomJpaRepository;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.RoomType;
