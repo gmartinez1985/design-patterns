@@ -13,7 +13,7 @@ public final class ReservationMongoDocumentMother {
 
     public static ReservationMongoDocument createMongoDocument() {
         return new ReservationMongoDocument(
-                UUID.randomUUID(),
+                RESERVATION_ID,
                 new ReservationMongoDocument.RoomSnapshot(
                         UUID.randomUUID(),
                         "SINGLE",

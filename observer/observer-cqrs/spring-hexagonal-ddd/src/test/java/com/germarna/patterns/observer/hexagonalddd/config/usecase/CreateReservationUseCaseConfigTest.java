@@ -23,9 +23,6 @@ class CreateReservationUseCaseConfigTest {
 	@MockitoBean
 	private SaveReservationPort saveReservationPort;
 
-	@Autowired
-	ApplicationContext ctx;
-
 	@Test
 	void testDecoratorsWiringOrder() throws Exception {
 		final var transactional = this.createReservationUseCase;
