@@ -1,0 +1,2 @@
+INSERT INTO rooms (room_id, number, room_type)
+VALUES (CAST('11111111-1111-1111-1111-111111111111' AS UUID), '101', 'DOUBLE');

@@ -1,4 +1,4 @@
-package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.readmodel.port.in;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.readmodel.port.out;
 
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.ReservationProjectionView;
 

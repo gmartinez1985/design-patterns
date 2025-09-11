@@ -1,6 +1,7 @@
 package com.germarna.patterns.observer.hexagonalddd.application.domain.service;
 
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
+import com.germarna.patterns.observer.hexagonalddd.application.domain.response.ReservationView;
 import com.germarna.patterns.observer.hexagonalddd.application.port.out.reservation.FindReservationPort;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,17 +32,19 @@ class FindReservationServiceTest {
 		// GIVEN
 		final UUID reservationId = UUID.randomUUID();
 		final UUID roomId = UUID.randomUUID();
+        final String roomType = "DOUBLE";
+        final String roomNumber = "101";
 		final String guestName = "Ada Lovelace";
 		final String guestEmail = "ada@example.com";
 		final Date checkIn = new Date(System.currentTimeMillis() + 86_400_000L);
 		final Date checkOut = new Date(System.currentTimeMillis() + 2 * 86_400_000L);
 
-		final Reservation expected = new Reservation(reservationId, roomId, guestName, guestEmail, checkIn, checkOut);
+		final ReservationView expected = new ReservationView(reservationId, guestName, guestEmail, checkIn, checkOut, new ReservationView.RoomView(roomId, roomType, roomNumber));
 
 		when(this.findReservationPort.loadReservation(reservationId)).thenReturn(expected);
 
 		// WHEN
-		final Reservation result = this.service.findReservation(reservationId);
+		final ReservationView result = this.service.findReservation(reservationId);
 
 		// THEN
 		assertSame(expected, result, "Service should return the exact instance provided by the port");

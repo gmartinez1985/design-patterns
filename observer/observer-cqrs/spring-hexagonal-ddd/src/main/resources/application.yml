@@ -21,8 +21,6 @@ spring:
       enabled: true
   data:
       mongodb:
-#        database: testdb
-#        port: 27017
         uri: mongodb://localhost:27017/testdb
   main:
     web-application-type: servlet

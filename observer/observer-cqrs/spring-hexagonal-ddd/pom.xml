@@ -90,6 +90,11 @@
 			<artifactId>mockito-core</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-testcontainers</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- PIT JUnit5 plugin -->
 		<dependency>
@@ -197,7 +202,7 @@
 							<dataFile>${project.build.directory}/jacoco-ut.exec</dataFile>
 							<outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
 							<excludes>
-								<exclude>com/germarna/patterns/observer/hexagonalddd/adapter/out/persistence/**/mapper/*Impl.class</exclude>
+								<exclude>com/germarna/patterns/observer/hexagonalddd/adapter/out/persistence/**/*MapperImpl.class</exclude>
 							</excludes>
 						</configuration>
 					</execution>
@@ -225,10 +230,48 @@
 							<dataFile>${project.build.directory}/jacoco-it.exec</dataFile>
 							<outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
 							<excludes>
-								<exclude>com/germarna/patterns/observer/hexagonalddd/adapter/out/persistence/**/mapper/*Impl.class</exclude>
+								<exclude>com/germarna/patterns/observer/hexagonalddd/adapter/out/persistence/**/*MapperImpl.class</exclude>
 							</excludes>
 						</configuration>
 					</execution>
+
+					<!-- Merge UT + IT into one exec -->
+					<execution>
+						<id>merge-ut-it</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>merge</goal>
+						</goals>
+						<configuration>
+							<fileSets>
+								<fileSet>
+									<directory>${project.build.directory}</directory>
+									<includes>
+										<include>jacoco-ut.exec</include>
+										<include>jacoco-it.exec</include>
+									</includes>
+								</fileSet>
+							</fileSets>
+							<destFile>${project.build.directory}/jacoco-all.exec</destFile>
+						</configuration>
+					</execution>
+					<!-- Global report from merged exec -->
+					<execution>
+						<id>report-all</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<dataFile>${project.build.directory}/jacoco-all.exec</dataFile>
+							<outputDirectory>${project.reporting.outputDirectory}/jacoco-all</outputDirectory>
+							<!-- mismos excludes que ya usas en UT/IT -->
+							<excludes>
+								<exclude>com/germarna/patterns/observer/hexagonalddd/adapter/out/persistence/**/*MapperImpl.class</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+
 				</executions>
 			</plugin>
 			<!-- PIT Mutation Testing -->

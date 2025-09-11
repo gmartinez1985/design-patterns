@@ -2,7 +2,7 @@ package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.proj
 
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.model.ReservationSnapshot;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.writemodel.model.RoomSnapshot;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.savereservation.ReservationPersistedEvent;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.operations.savereservation.ReservationPersistedEvent;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Room;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

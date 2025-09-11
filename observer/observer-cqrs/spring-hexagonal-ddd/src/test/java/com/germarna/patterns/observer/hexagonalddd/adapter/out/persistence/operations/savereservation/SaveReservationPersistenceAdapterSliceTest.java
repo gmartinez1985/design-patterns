@@ -1,11 +1,9 @@
-package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.savereservation;
+package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.operations.savereservation;
 
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.mapper.ReservationJpaMapperImpl;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.model.ReservationJpaEntity;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.repository.ReservationJpaRepository;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.savereservation.ReservationPersistedEvent;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.savereservation.SaveReservationPersistenceAdapter;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.mapper.ReservationJpaMapperImpl;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.helpers.JpaSliceTestSupport;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.operations.helpers.JpaSliceTestSupport;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

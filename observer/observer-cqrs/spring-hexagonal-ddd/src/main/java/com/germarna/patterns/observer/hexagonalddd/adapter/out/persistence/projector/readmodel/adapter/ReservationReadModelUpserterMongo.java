@@ -1,7 +1,7 @@
 package com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.readmodel.adapter;
 
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.model.ReservationMongoDocument;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.readmodel.port.in.ReservationReadModelUpserter;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.readmodel.port.out.ReservationReadModelUpserter;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.readmodel.mapper.ReservationViewMapper;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.repository.ReservationMongoRepository;
 import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.projector.ReservationProjectionView;
