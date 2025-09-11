@@ -1,0 +1,19 @@
+app:
+  startup-runner:
+    enabled: false
+
+spring:
+  autoconfigure:
+    exclude: []
+  data:
+    mongodb:
+      host: 127.0.0.1
+      port: 0          # 0 => Flapdoodle asigna puerto aleatorio
+      database: readmodel
+      auto-index-creation: true
+
+logging:
+  level:
+    org.hibernate:
+      SQL: ERROR
+      orm.jdbc.bind: ERROR

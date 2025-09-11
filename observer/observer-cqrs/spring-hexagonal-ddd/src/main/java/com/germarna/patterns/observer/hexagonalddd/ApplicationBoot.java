@@ -1,10 +1,11 @@
 package com.germarna.patterns.observer.hexagonalddd;
 
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.read.repository.ReservationMongoRepository;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.entity.RoomJpaEntity;
-import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.write.common.repository.RoomJpaRepository;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.readmodel.repository.ReservationMongoRepository;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.model.RoomJpaEntity;
+import com.germarna.patterns.observer.hexagonalddd.adapter.out.persistence.common.writemodel.repository.RoomJpaRepository;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.Reservation;
 import com.germarna.patterns.observer.hexagonalddd.application.domain.model.RoomType;
+import com.germarna.patterns.observer.hexagonalddd.application.domain.response.ReservationView;
 import com.germarna.patterns.observer.hexagonalddd.application.port.in.usecase.CreateReservationUseCase;
 import com.germarna.patterns.observer.hexagonalddd.application.port.in.usecase.FindReservationUseCase;
 import org.springframework.boot.CommandLineRunner;
@@ -42,7 +43,7 @@ public class ApplicationBoot {
 			final UUID reservationId = saveReservationUseCase.createReservation(roomId, guestName, guestEmail, checkIn,
 					checkOut);
 			System.out.println();
-			final Reservation reservation = findReservationUseCase.findReservation(reservationId);
+			final ReservationView reservation = findReservationUseCase.findReservation(reservationId);
 			System.out.println("✅ Reservation found successfully: " + reservation + "\n");
 		};
 	}

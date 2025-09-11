@@ -20,6 +20,7 @@ Each folder contains one or more subprojects, ranging from pure Java ("vanilla")
 |            | [`reservation-persistance-decoration`](https://github.com/gmartinez1985/design-patterns/tree/main/decorator/reservation-persistance-decoration/spring-hexagonal-ddd)              | Java + Spring Boot | Uses the Decorator Pattern in the **persistence layer**, implementing behaviors such as caching and auditing without polluting core persistence logic. |
 | **Observer** | [`vanilla`](https://github.com/gmartinez1985/design-patterns/tree/main/observer/vanilla)                                                                                          | Java (Vanilla) | Pure Java implementation of the Observer Pattern, showing publisher–subscriber mechanics without any frameworks. |
 |            | [`spring-hexagonal-ddd`](https://github.com/gmartinez1985/design-patterns/tree/main/observer/spring-hexagonal-ddd)                                                                | Java + Spring Boot | Observer Pattern applied in a Spring Boot REST client scenario, leveraging Spring’s event system. |
+|            | [`observer-cqrs/spring-hexagonal-ddd`](https://github.com/gmartinez1985/design-patterns/tree/main/observer/observer-cqrs)                                                                | Java + Spring Boot | CQRS using Spring Events (Observer) to project from the write model (SQL) to the read model (MongoDB) with eventual consistency. |
 
 
 
