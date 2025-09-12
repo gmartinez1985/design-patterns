@@ -53,6 +53,19 @@ These examples aim to:
 
 ---
 
+## 🕒 Timeline of DDD + Hexagonal Projects
+
+The **DDD + Hexagonal Architecture** projects in this repository were developed in the following order.  
+They are **independent projects**, but as they were created one after another, each one reflects small improvements in **architecture, package organization, naming conventions, and testing practices**.
+
+1. Observer — spring-hexagonal-ddd
+2. Decorator — reservation-usecase-decoration 
+3. Decorator — reservation-api-client-decorators  
+4. Decorator — reservation-persistance-decoration  
+5. Observer — observer-cqrs/spring-hexagonal-ddd  
+
+---
+
 ## 📄 License
 This repository is licensed under the MIT License.  
 You are free to use, modify, and distribute these examples.
