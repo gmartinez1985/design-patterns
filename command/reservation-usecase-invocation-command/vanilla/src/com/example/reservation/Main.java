@@ -8,6 +8,7 @@ import com.example.reservation.service.createreservation.CreateReservationServic
 import com.example.reservation.service.createreservation.CreateReservationUseCase;
 import com.example.reservation.shared.AsyncInvoker;
 import com.example.reservation.shared.Command;
+import com.example.reservation.shared.CommandHistory;
 import com.example.reservation.shared.Invoker;
 import com.example.reservation.utils.CommandsGenerator;
 
@@ -52,7 +53,7 @@ public class Main {
 
         CompletableFuture.allOf(
                 batch.stream()
-                        .map(cmd -> async.invokeAsync(cmd).whenComplete((v, ex) -> {
+                        .map(cmd -> async.setCommand(cmd).invokeAsync().whenComplete((v, ex) -> {
                             if (ex == null) ok.incrementAndGet();
                             else { failed.incrementAndGet(); System.err.println("[ASYNC-ERROR] " + ex.getMessage()); }
                         }))
@@ -62,10 +63,8 @@ public class Main {
         System.out.println("OK=" + ok.get() + " FAILED=" + failed.get());
 
         System.out.println("\n=== HISTORY ===");
-        com.example.reservation.shared.StringHistory.getInstance()
+        CommandHistory.getInstance()
                 .snapshot()
                 .forEach(System.out::println);
     }
-
-
 }

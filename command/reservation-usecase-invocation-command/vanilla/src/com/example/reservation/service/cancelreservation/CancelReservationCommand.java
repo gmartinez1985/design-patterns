@@ -18,10 +18,6 @@ public class CancelReservationCommand implements Command {
         cancelReservationUseCase.handle(reservationId);
     }
 
-    // Opcional: sin sentido práctico "rehacer" una cancelación aquí.
-    @Override
-    public void undo() { /* no-op */ }
-
     @Override
     public String toString() {
         return "CancelReservationCommand{" +

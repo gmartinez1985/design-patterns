@@ -3,11 +3,11 @@ package com.example.reservation.shared;
 public class Invoker {
 
     private Command command;
-    private final StringHistory history; // puede ser null
+    private final CommandHistory history;
 
     public Invoker(Command command) {
         this.command = command;
-        history = StringHistory.getInstance();
+        history = CommandHistory.getInstance();
     }
 
     public void setCommand(Command command) { this.command = command; }

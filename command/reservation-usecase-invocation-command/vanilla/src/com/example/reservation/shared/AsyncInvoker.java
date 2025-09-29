@@ -1,27 +1,30 @@
 package com.example.reservation.shared;
 
-import java.util.Collection;
+import java.util.Objects;
 import java.util.concurrent.*;
 
 public class AsyncInvoker implements AutoCloseable {
     private final ExecutorService executor;
     private final boolean managedExecutor;
-    private final StringHistory history;
+    private final CommandHistory history;
+    private Command command;
 
     public AsyncInvoker(int poolSize) {
         this.executor = Executors.newFixedThreadPool(poolSize);
         this.managedExecutor = true;
-        this.history = StringHistory.getInstance();
+        this.history = CommandHistory.getInstance();
     }
 
-    public CompletableFuture<Void> invokeAsync(Command command) {
-        return CompletableFuture.runAsync(() -> runWithLogging("AsyncCommand", command, command::execute), executor);
+    public AsyncInvoker setCommand(Command command) {
+        this.command = Objects.requireNonNull(command, "command");
+        return this;
     }
-    public CompletableFuture<Void> undoAsync(Command command) {
-        return CompletableFuture.runAsync(() -> runWithLogging("AsyncCommand(undo)", command, command::undo), executor);
+
+    public CompletableFuture<Void> invokeAsync() {
+        return CompletableFuture.runAsync(() -> runWithLogging("AsyncCommand", this.command, this.command::execute), executor);
     }
-    public CompletableFuture<Void> invokeAllAsync(Collection<? extends Command> commands) {
-        return CompletableFuture.allOf(commands.stream().map(this::invokeAsync).toArray(CompletableFuture[]::new));
+    public CompletableFuture<Void> undoAsync() {
+        return CompletableFuture.runAsync(() -> runWithLogging("AsyncCommand(undo)", this.command, this.command::undo), executor);
     }
 
     private void runWithLogging(String label, Command command, Runnable action) {

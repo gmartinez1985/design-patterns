@@ -3,13 +3,13 @@ package com.example.reservation.shared;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public final class StringHistory {
-    private static final StringHistory INSTANCE = new StringHistory();
+public final class CommandHistory {
+    private static final CommandHistory INSTANCE = new CommandHistory();
     private final CopyOnWriteArrayList<String> lines = new CopyOnWriteArrayList<>();
 
-    private StringHistory() { }
+    private CommandHistory() { }
 
-    public static StringHistory getInstance() { return INSTANCE; }
+    public static CommandHistory getInstance() { return INSTANCE; }
 
     public void add(String line) { lines.add(line); }
 
